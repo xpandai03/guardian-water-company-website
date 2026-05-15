@@ -1,133 +1,118 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+/* Delahunty Water Systems — Phase 1 design tokens.
+   Refined sRGB palette per FRONTEND_PLAN.md §3.
+   Dark mode intentionally not supported. */
 
 :root {
-  /* Delahunty Water Systems palette - Navy, Teal, Green accents */
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.25 0.03 240);
-  --card: oklch(0.98 0 0);
-  --card-foreground: oklch(0.25 0.03 240);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.25 0.03 240);
-  
-  /* Navy blue primary */
-  --primary: oklch(0.30 0.05 240);
-  --primary-foreground: oklch(1 0 0);
-  
-  /* Light gray/aqua tint secondary */
-  --secondary: oklch(0.96 0.01 200);
-  --secondary-foreground: oklch(0.25 0.03 240);
-  
-  --muted: oklch(0.96 0.008 200);
-  --muted-foreground: oklch(0.45 0.02 240);
-  
-  /* Teal/aqua accent */
-  --accent: oklch(0.65 0.12 195);
-  --accent-foreground: oklch(1 0 0);
-  
-  /* Green CTA color */
-  --cta: oklch(0.65 0.18 145);
-  --cta-foreground: oklch(1 0 0);
-  
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.92 0.005 200);
-  --input: oklch(0.92 0.005 200);
-  --ring: oklch(0.65 0.12 195);
-  --chart-1: oklch(0.65 0.12 195);
-  --chart-2: oklch(0.55 0.10 195);
-  --chart-3: oklch(0.45 0.08 195);
-  --chart-4: oklch(0.65 0.18 145);
-  --chart-5: oklch(0.55 0.15 145);
-  --radius: 0.5rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.25 0.03 240);
-  --sidebar-primary: oklch(0.65 0.12 195);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.96 0.01 200);
-  --sidebar-accent-foreground: oklch(0.25 0.03 240);
-  --sidebar-border: oklch(0.922 0.005 200);
-  --sidebar-ring: oklch(0.65 0.12 195);
-  
-  /* Hero section dark navy background */
-  --hero-bg: oklch(0.28 0.04 220);
-  --hero-foreground: oklch(1 0 0);
-}
+  /* ---- Surfaces ---- */
+  --background: #ffffff;
+  --foreground: #0b1d2a;
 
-.dark {
-  --background: oklch(0.12 0.02 220);
-  --foreground: oklch(0.95 0 0);
-  --card: oklch(0.18 0.02 220);
-  --card-foreground: oklch(0.95 0 0);
-  --popover: oklch(0.12 0.02 220);
-  --popover-foreground: oklch(0.95 0 0);
-  --primary: oklch(0.95 0 0);
-  --primary-foreground: oklch(0.12 0.02 220);
-  --secondary: oklch(0.25 0.02 220);
-  --secondary-foreground: oklch(0.95 0 0);
-  --muted: oklch(0.25 0.02 220);
-  --muted-foreground: oklch(0.65 0 0);
-  --accent: oklch(0.70 0.12 195);
-  --accent-foreground: oklch(0.12 0.02 220);
-  --cta: oklch(0.70 0.18 145);
-  --cta-foreground: oklch(0.12 0.02 220);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.25 0.02 220);
-  --input: oklch(0.25 0.02 220);
-  --ring: oklch(0.70 0.12 195);
-  --chart-1: oklch(0.70 0.12 195);
-  --chart-2: oklch(0.60 0.10 195);
-  --chart-3: oklch(0.50 0.08 195);
-  --chart-4: oklch(0.70 0.18 145);
-  --chart-5: oklch(0.60 0.15 145);
-  --sidebar: oklch(0.15 0.02 220);
-  --sidebar-foreground: oklch(0.95 0 0);
-  --sidebar-primary: oklch(0.70 0.12 195);
-  --sidebar-primary-foreground: oklch(0.95 0 0);
-  --sidebar-accent: oklch(0.25 0.02 220);
-  --sidebar-accent-foreground: oklch(0.95 0 0);
-  --sidebar-border: oklch(0.25 0.02 220);
-  --sidebar-ring: oklch(0.70 0.12 195);
-  --hero-bg: oklch(0.20 0.03 220);
-  --hero-foreground: oklch(0.95 0 0);
+  --card: #ffffff;
+  --card-foreground: #0b1d2a;
+
+  --popover: #ffffff;
+  --popover-foreground: #0b1d2a;
+
+  --muted: #f4f7f9;
+  --muted-foreground: #4a5b66;
+
+  /* Secondary tracks muted for visual coherence with shadcn defaults. */
+  --secondary: #f4f7f9;
+  --secondary-foreground: #0b1d2a;
+
+  /* ---- Brand ---- */
+  --primary: #0e2a3a;          /* deep navy — headlines, footer bg */
+  --primary-foreground: #ffffff;
+
+  --accent: #1ba6c9;           /* aqua/teal — brand mark color */
+  --accent-foreground: #ffffff;
+  --accent-soft: #e6f6fa;      /* tints, icon-bubble backgrounds */
+
+  /* ---- CTA (green, per David) ---- */
+  --cta: #22a06b;
+  --cta-foreground: #ffffff;
+
+  /* ---- Hero / dark section ---- */
+  --hero-bg: #0b3142;
+  --hero-foreground: #f4fbfd;
+
+  /* ---- Forms / borders / focus ---- */
+  --border: #e2ebef;
+  --input: #e2ebef;
+  --ring: #1ba6c9;             /* focus ring = accent */
+
+  /* ---- Destructive ---- */
+  --destructive: #c93131;
+  --destructive-foreground: #ffffff;
+
+  /* ---- Charts (used by recharts components if rendered; safe defaults) ---- */
+  --chart-1: #1ba6c9;
+  --chart-2: #2c7d92;
+  --chart-3: #0e2a3a;
+  --chart-4: #22a06b;
+  --chart-5: #57c39b;
+
+  /* ---- Sidebar tokens (kept for shadcn compatibility; not actively used) ---- */
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0b1d2a;
+  --sidebar-primary: #1ba6c9;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f4f7f9;
+  --sidebar-accent-foreground: #0b1d2a;
+  --sidebar-border: #e2ebef;
+  --sidebar-ring: #1ba6c9;
+
+  /* ---- Radius ---- */
+  --radius: 0.5rem;
 }
 
 @theme inline {
-  --font-sans: "Geist", "Geist Fallback";
-  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  /* Map every CSS var into a Tailwind color/spacing/radius utility.
+     This is what enables `bg-primary`, `text-cta`, etc. */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
+
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
+
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-soft: var(--accent-soft);
+
   --color-cta: var(--cta);
   --color-cta-foreground: var(--cta-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-hero-bg: var(--hero-bg);
+  --color-hero-foreground: var(--hero-foreground);
+
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -136,18 +121,26 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  --color-hero-bg: var(--hero-bg);
-  --color-hero-foreground: var(--hero-foreground);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Inter from next/font/google in app/layout.tsx exposes --font-inter.
+     System mono fallback — no separate font loaded. */
+  --font-sans: var(--font-inter), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
   html {
     @apply bg-background;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
   }
 }

@@ -16,6 +16,8 @@
 
 import { JobberMutationError, submitLead } from "@/lib/leads/submit-lead";
 import { leadSchema } from "@/lib/leads/schema";
+import { JobberOAuthError } from "@/lib/jobber/oauth";
+import { JobberGraphqlError } from "@/lib/jobber/graphql";
 
 async function main(): Promise<void> {
   // Re-runs the same Zod normalization the API route will, so this exercises
@@ -42,7 +44,13 @@ async function main(): Promise<void> {
     console.log("");
     console.log("Open David's Jobber UI to confirm the test client + request appear, then delete them.");
   } catch (err) {
-    if (err instanceof JobberMutationError) {
+    if (err instanceof JobberOAuthError) {
+      console.error(`[smoke] OAuth failure (HTTP ${err.status}): ${err.message}`);
+      console.error(`[smoke] response body: ${err.body}`);
+    } else if (err instanceof JobberGraphqlError) {
+      console.error(`[smoke] GraphQL failure (HTTP ${err.status}): ${err.message}`);
+      console.error("[smoke] graphql errors:", JSON.stringify(err.graphqlErrors, null, 2));
+    } else if (err instanceof JobberMutationError) {
       console.error("[smoke] mutation userErrors:");
       for (const ue of err.userErrors) {
         console.error(`  - ${ue.path.join(".") || "(root)"}: ${ue.message}`);

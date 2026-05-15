@@ -1,25 +1,31 @@
-import { Header } from "@/components/header"
-import { Hero } from "@/components/hero"
-import { AboutTrainer } from "@/components/about-trainer"
-import { Benefits } from "@/components/benefits"
-import { Booking } from "@/components/booking"
-import { Testimonials } from "@/components/testimonials"
-import { FAQ } from "@/components/faq"
-import { FinalCTA } from "@/components/final-cta"
-import { Footer } from "@/components/footer"
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { HomeHero } from "@/components/home/hero";
+import { TrustStrip } from "@/components/trust-strip";
+import { ServicesOverview } from "@/components/services-overview";
+import { WaterEducation } from "@/components/water-education";
+import { ProcessSteps } from "@/components/process-steps";
+import { Benefits } from "@/components/benefits";
+import { Testimonials } from "@/components/testimonials";
+import { CtaStrip } from "@/components/cta-strip";
 
+// Home page composition — Phase 2.
+// Section order locked per FRONTEND_PLAN.md §10 step 3.
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background">
+    <>
       <Header />
-      <Hero />
-      <AboutTrainer />
-      <Benefits />
-      <Booking />
-      <Testimonials />
-      <FAQ />
-      <FinalCTA />
+      <main>
+        <HomeHero />
+        <TrustStrip />
+        <ServicesOverview />
+        <WaterEducation />
+        <ProcessSteps />
+        <Benefits />
+        <Testimonials />
+        <CtaStrip />
+      </main>
       <Footer />
-    </main>
-  )
+    </>
+  );
 }

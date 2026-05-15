@@ -1,7 +1,49 @@
 // Jobber GraphQL mutation strings + typed variable shapes.
-// clientCreate is final (BACKEND_PLAN.md §3.2).
-// propertyCreate / requestCreate are TODOs until session 1 step 5 resolves
-// Case A vs Case B against the live schema (BACKEND_PLAN.md §3.3).
+//
+// Locked against Jobber GraphQL version 2025-04-16 via live introspection
+// + a successful end-to-end test mutation. See BACKEND_PLAN.md §3.
+//
+// Resolved approach: "Case C" — ClientCreateInput accepts inline `properties[]`,
+// so we do client + property creation in a SINGLE clientCreate call, then
+// requestCreate with both ids. No standalone propertyCreate is needed.
+
+// ---------------------------------------------------------------------------
+// Shared scalar shapes (introspected names: PhoneNumberCreateAttributes,
+// EmailCreateAttributes, AddressAttributes, PropertyAttributes)
+// ---------------------------------------------------------------------------
+
+// Confirmed working enum value for both phone + email `description`. Other
+// enum values exist (WORK / HOME / etc.) but `MAIN` is the canonical default
+// used by Jobber's own UI for primary contact info.
+export type JobberContactDescription = "MAIN";
+
+export interface PhoneNumberCreateAttributes {
+  description: JobberContactDescription;
+  primary: boolean;
+  number: string; // E.164
+}
+
+export interface EmailCreateAttributes {
+  description: JobberContactDescription;
+  primary: boolean;
+  address: string;
+}
+
+// All fields optional per introspection; populate what we have.
+// Jobber uses `province` for the US "state" field in NA.
+export interface AddressAttributes {
+  street1?: string;
+  street2?: string;
+  city?: string;
+  province?: string;
+  postalCode?: string;
+  country?: string;
+}
+
+// PropertyAttributes.address is NON_NULL.
+export interface PropertyAttributes {
+  address: AddressAttributes;
+}
 
 // ---------------------------------------------------------------------------
 // clientCreate (final)
@@ -14,6 +56,11 @@ export const CLIENT_CREATE_MUTATION = /* GraphQL */ `
         id
         firstName
         lastName
+        clientProperties {
+          nodes {
+            id
+          }
+        }
       }
       userErrors {
         message
@@ -23,65 +70,74 @@ export const CLIENT_CREATE_MUTATION = /* GraphQL */ `
   }
 `;
 
-export interface JobberPhoneInput {
-  description: "MAIN" | "WORK" | "MOBILE" | "HOME";
-  primary: boolean;
-  number: string;
-}
-
-export interface JobberEmailInput {
-  description: "MAIN" | "WORK";
-  primary: boolean;
-  address: string;
-}
-
-export interface JobberAddressInput {
-  street1: string;
-  city?: string;
-  province?: string;     // Jobber uses `province` for state in NA
-  postalCode?: string;
-  country?: string;
-}
-
 export interface ClientCreateInput {
   firstName: string;
   lastName: string;
-  emails: JobberEmailInput[];
-  phones: JobberPhoneInput[];
-  billingAddress?: JobberAddressInput;
+  emails: EmailCreateAttributes[];
+  phones: PhoneNumberCreateAttributes[];
+  properties?: PropertyAttributes[];
+  billingAddress?: AddressAttributes;
+}
+
+export interface JobberClient {
+  id: string;
+  firstName: string;
+  lastName: string;
+  clientProperties: {
+    nodes: { id: string }[];
+  };
+}
+
+export interface JobberUserError {
+  message: string;
+  path: string[];
 }
 
 export interface ClientCreateResponse {
   clientCreate: {
-    client: { id: string; firstName: string; lastName: string } | null;
-    userErrors: { message: string; path: string[] }[];
+    client: JobberClient | null;
+    userErrors: JobberUserError[];
   };
 }
 
 // ---------------------------------------------------------------------------
-// propertyCreate (placeholder — finalized in session 1 step 5)
+// requestCreate (final)
 // ---------------------------------------------------------------------------
+//
+// requestDetails on RequestCreateInput is a FormInput type — it does NOT take
+// free-text. v1 puts homeowner context in the `title` field instead; see
+// `buildRequestTitle` in lib/leads/submit-lead.ts. v1.5 will attach a real
+// Jobber Form via FormInput once David configures intake forms.
 
-// TODO(session-1, step-5): replace once GraphiQL introspection confirms
-// PropertyCreateInput shape. See BACKEND_PLAN.md §3.3.
-export const PROPERTY_CREATE_MUTATION = /* GraphQL */ `
-  # placeholder — do not call until session 1 step 5
-  mutation PropertyCreatePlaceholder { __typename }
-`;
-
-// ---------------------------------------------------------------------------
-// requestCreate (placeholder — finalized in session 1 step 5)
-// ---------------------------------------------------------------------------
-
-// TODO(session-1, step-5): replace once GraphiQL introspection confirms
-// RequestCreateInput shape (Case A inline vs Case B separate property). See
-// BACKEND_PLAN.md §3.3.
 export const REQUEST_CREATE_MUTATION = /* GraphQL */ `
-  # placeholder — do not call until session 1 step 5
-  mutation RequestCreatePlaceholder { __typename }
+  mutation RequestCreate($input: RequestCreateInput!) {
+    requestCreate(input: $input) {
+      request {
+        id
+        title
+      }
+      userErrors {
+        message
+        path
+      }
+    }
+  }
 `;
 
-// Address-mode flag — flip to "inline" after schema check confirms Case A.
-// Default "separate" assumes the more conservative path (3 calls).
-export type AddressMode = "inline" | "separate";
-export const ADDRESS_MODE: AddressMode = "separate";
+export interface RequestCreateInput {
+  clientId: string;       // NON_NULL
+  propertyId?: string;    // optional in schema; we always send it
+  title?: string;         // optional in schema; we always send it
+}
+
+export interface JobberRequest {
+  id: string;
+  title: string | null;
+}
+
+export interface RequestCreateResponse {
+  requestCreate: {
+    request: JobberRequest | null;
+    userErrors: JobberUserError[];
+  };
+}

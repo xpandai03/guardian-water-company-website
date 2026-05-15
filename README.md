@@ -1,6 +1,6 @@
-# Delahunty Water Systems
+# Guardian Water
 
-Marketing + lead intake site for Delahunty Water Systems (Northeast Ohio).
+Marketing + lead intake site for Guardian Water (Northeast Ohio).
 
 Stack: Next.js 15 App Router · React 19 · TypeScript · Tailwind v4 · shadcn/ui · Zod · react-hook-form · Sonner · Vercel.
 
@@ -30,7 +30,7 @@ Vercel: add **every** variable from `.env.local.example` to **both** the **Produ
 |---|---|
 | `JOBBER_CLIENT_ID` | Jobber Developer Center → your app → "Client ID" |
 | `JOBBER_CLIENT_SECRET` | Same screen → "Client Secret" (server-only) |
-| `JOBBER_REDIRECT_URI` | Exact callback URL registered in the Jobber app config, e.g. `https://delahuntywater.com/api/jobber/oauth/callback` |
+| `JOBBER_REDIRECT_URI` | Exact callback URL registered in the Jobber app config, e.g. `https://guardianwater.com/api/jobber/oauth/callback` |
 | `JOBBER_REFRESH_TOKEN` | Set by the one-time OAuth handshake below |
 | `JOBBER_GRAPHQL_VERSION` | Pin to the API version you validated in GraphiQL |
 | `TWILIO_ACCOUNT_SID` | Twilio Console → Account → Account SID |

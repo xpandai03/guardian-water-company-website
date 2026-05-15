@@ -57,10 +57,7 @@ export function Footer() {
               <FooterLogoMark />
               <div className="flex flex-col leading-none">
                 <span className="font-bold text-lg">
-                  DELAHUNTY<span className="text-accent font-normal">WATER</span>
-                </span>
-                <span className="text-[10px] tracking-[0.25em] text-primary-foreground/70 mt-1">
-                  SYSTEMS
+                  GUARDIAN <span className="text-accent font-normal">WATER</span>
                 </span>
               </div>
             </div>
@@ -77,7 +74,7 @@ export function Footer() {
               {/* TODO(david): real email */}
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-accent shrink-0" aria-hidden="true" />
-                <span className="text-primary-foreground/70">hello@delahuntywater.com</span>
+                <span className="text-primary-foreground/70">hello@guardianwater.com</span>
               </li>
               {/* TODO(david): real address */}
               <li className="flex items-start gap-2">
@@ -134,7 +131,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 pt-6 border-t border-primary-foreground/15 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-primary-foreground/60">
-          <p>&copy; {year} Delahunty Water Systems. All rights reserved.</p>
+          <p>&copy; {year} Guardian Water, LLC. All rights reserved.</p>
           <div className="flex gap-6">
             {/* TODO(david): real privacy + terms copy */}
             <Link href="/privacy" className="hover:text-accent transition">

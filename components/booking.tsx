@@ -65,7 +65,7 @@ export function Booking() {
             <div className="absolute inset-0 rounded-2xl overflow-hidden">
               <img
                 src="/hero-team.jpg"
-                alt="Delahunty Water Systems professional team"
+                alt="Guardian Water professional team"
                 className="w-full h-full object-cover"
               />
             </div>

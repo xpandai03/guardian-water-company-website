@@ -16,8 +16,8 @@ const inter = Inter({
 // the final company copy. Keeping NE Ohio-grounded placeholder for now.
 export const metadata: Metadata = {
   title: {
-    default: "Delahunty Water Systems | Northeast Ohio Water Filtration",
-    template: "%s | Delahunty Water Systems",
+    default: "Guardian Water | Northeast Ohio Water Filtration",
+    template: "%s | Guardian Water",
   },
   description:
     "Northeast Ohio's local water filtration experts. Whole house filtration, water softeners, and reverse osmosis systems for cleaner, safer water at home.",

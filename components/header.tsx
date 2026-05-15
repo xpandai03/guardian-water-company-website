@@ -64,14 +64,11 @@ export function Header() {
     <header className="sticky top-0 z-50 bg-background border-b border-border">
       <Container className="flex items-center justify-between py-4">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 group" aria-label="Delahunty Water Systems — home">
+        <Link href="/" className="flex items-center gap-3 group" aria-label="Guardian Water — home">
           <LogoMark />
           <div className="flex flex-col leading-none">
             <span className="font-bold text-lg text-primary">
-              DELAHUNTY<span className="text-accent font-normal">WATER</span>
-            </span>
-            <span className="text-[10px] tracking-[0.25em] text-muted-foreground mt-1">
-              SYSTEMS
+              GUARDIAN <span className="text-accent font-normal">WATER</span>
             </span>
           </div>
         </Link>

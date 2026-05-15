@@ -60,7 +60,7 @@ Replace the Session 1 stub with a real implementation per PLAN.md §6:
 
 **Template loading:**
 - Read `LEAD_CONFIRMATION_SMS_TEMPLATE` env var.
-- If unset, use baked-in Candidate A: `"Hi {firstName}, thanks for reaching out to Delahunty Water Systems. We'll call you within one business day. — David"`
+- If unset, use baked-in Candidate A: `"Hi {firstName}, thanks for reaching out to Guardian Water. We'll call you within one business day. — David"`
 - `.replace("{firstName}", input.firstName)` — only one variable, no template engine needed.
 
 **Edge cases:**
@@ -94,7 +94,7 @@ Field order per FRONTEND_PLAN.md §6 table:
 - Success state: replace form card in-place with checkmark + "Thanks — we got your request" + secondary "Back to home" link. Also fire Sonner toast.
 - Failure state: Sonner error toast + form stays populated for retry. Server-returned 4xx field errors mapped via RHF `setError`.
 
-**TCPA-style consent checkbox** (from FRONTEND_PLAN.md §6): include the checkbox `"I agree to receive a follow-up text from Delahunty Water Systems"` as the 8th element. Default checked. Posts as `smsConsent: boolean`.
+**TCPA-style consent checkbox** (from FRONTEND_PLAN.md §6): include the checkbox `"I agree to receive a follow-up text from Guardian Water"` as the 8th element. Default checked. Posts as `smsConsent: boolean`.
 
 **Where the form lives in v1:** the existing `booking.tsx` instance on the home page is enough for this session. The dedicated `/contact` page lands in the broader frontend build (FRONTEND_PLAN.md §1) and will reuse the same component.
 

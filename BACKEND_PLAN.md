@@ -258,7 +258,7 @@ Constraints: ≤ 160 chars to stay 1-segment (cheap), no all-caps, no shortlinks
 **Candidate A — Warm + concise (78 chars, RECOMMENDED)**
 
 ```
-Hi {firstName}, thanks for reaching out to Delahunty Water Systems. We'll call you within one business day. — David
+Hi {firstName}, thanks for reaching out to Guardian Water. We'll call you within one business day. — David
 ```
 
 **Candidate B — Action-forward**
@@ -270,7 +270,7 @@ Thanks {firstName}! Your free water test request is in. We'll call within 1 busi
 **Candidate C — Short + signed**
 
 ```
-Got your request, {firstName} — we'll be in touch soon. Questions? Call (XXX) XXX-XXXX. — Delahunty Water Systems
+Got your request, {firstName} — we'll be in touch soon. Questions? Call (XXX) XXX-XXXX. — Guardian Water
 ```
 
 **Recommendation:** Candidate A. Warm tone, signed by David personally (high trust for local services), fits 1 segment, no awkward "Reply STOP" friction (we add STOP language only if our SMS volume grows or carriers start filtering — for transactional confirmation after a form submit, opt-in is implicit and STOP is auto-handled by Twilio).

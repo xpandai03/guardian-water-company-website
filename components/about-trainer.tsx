@@ -14,7 +14,7 @@ export function AboutTrainer() {
             <div className="absolute top-0 right-0 w-[75%] h-[85%] rounded-xl overflow-hidden shadow-lg">
               <img 
                 src="/technician-installing.jpg" 
-                alt="Delahunty Water Systems technician installing water filtration system" 
+                alt="Guardian Water technician installing water filtration system" 
                 className="w-full h-full object-cover"
               />
             </div>
@@ -37,13 +37,13 @@ export function AboutTrainer() {
 
             <p className="text-muted-foreground leading-relaxed">
               It all started with a simple idea: that everyone deserves access to clean, worry-free water. 
-              Over three decades later, Delahunty Water Systems has grown into Utah&apos;s trusted name for residential 
+              Over three decades later, Guardian Water has grown into Utah&apos;s trusted name for residential 
               water purification. We&apos;re family-owned, locally operated, and 100% focused on serving our 
               community with integrity, transparency, and a splash of good humor along the way.
             </p>
 
             <p className="text-muted-foreground leading-relaxed">
-              When you work with us, you&apos;re not just another customer—you become part of the Delahunty family.
+              When you work with us, you&apos;re not just another customer—you become part of the Guardian Water family.
             </p>
           </div>
         </div>
@@ -70,7 +70,7 @@ export function AboutTrainer() {
             <div className="absolute inset-0 rounded-xl overflow-hidden shadow-lg">
               <img 
                 src="/family-water.jpg" 
-                alt="Happy family enjoying clean water from Delahunty Water Systems" 
+                alt="Happy family enjoying clean water from Guardian Water" 
                 className="w-full h-full object-cover"
               />
             </div>

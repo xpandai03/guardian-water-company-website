@@ -1,4 +1,4 @@
-# Frontend implementation plan: Delahunty Water Systems
+# Frontend implementation plan: Guardian Water
 
 ## 0. Source material captured
 
@@ -34,7 +34,7 @@ The current v0 codebase is a single-page marketing site. Every page below other 
 | File | Decision | Reason |
 |---|---|---|
 | `components/header.tsx` | **Refactor** | Update nav items to `About / Services (dropdown) / Blog / Contact`; CTA stays "GET AN ESTIMATE" linking to `/contact`. Logo styling stays (it's actually solid). |
-| `components/hero.tsx` | **Refactor** | Currently uses copy that is About-page-appropriate ("About Delahunty Water Systems"). Move that copy to `/about`; rebuild Home hero per §2.A. |
+| `components/hero.tsx` | **Refactor** | Currently uses copy that is About-page-appropriate ("About Guardian Water"). Move that copy to `/about`; rebuild Home hero per §2.A. |
 | `components/about-trainer.tsx` | **Drop or migrate** | Built for a fitness template; not aligned with water brand. If reused, becomes the founder/team module on `/about`. |
 | `components/benefits.tsx` | **Keep, slightly retheme** | The 6 benefits already match Apex's "Why Choose" almost verbatim. Keep on Home. |
 | `components/booking.tsx` | **Refactor** | Field set must change from 3 → 6 fields per the new brief. See §6. |
@@ -260,7 +260,7 @@ White card on aqua-soft background. 8px border-radius (`rounded-2xl`), large lab
 | 6 | Water Source | `select` | 1/2 (md+) | yes | Water Source * → [City Water, Well Water, Not Sure] |
 | 7 | Additional Information | `textarea` (4 rows) | full | no | Tell us anything else about your home or water concerns… |
 
-A 7th visual element is a checkbox: `"I agree to receive a follow-up text from Delahunty Water Systems."` This is **strongly recommended** for TCPA compliance since we're sending a Twilio SMS after submit. Default checked is acceptable in most US contexts; David should confirm with whoever does his compliance.
+A 7th visual element is a checkbox: `"I agree to receive a follow-up text from Guardian Water."` This is **strongly recommended** for TCPA compliance since we're sending a Twilio SMS after submit. Default checked is acceptable in most US contexts; David should confirm with whoever does his compliance.
 
 ### Validation UX
 
@@ -314,7 +314,7 @@ Test viewports: 390×844 (iPhone 14), 428×926 (iPhone 14 Pro Max), 768×1024 (i
 
 ### Metadata
 
-Use Next App Router `export const metadata` per page and a default in `app/layout.tsx`. Per-page `title` template `"%s | Delahunty Water Systems"`, per-page `description` and `openGraph` images. Each service page gets unique meta. Blog posts get article-type Open Graph.
+Use Next App Router `export const metadata` per page and a default in `app/layout.tsx`. Per-page `title` template `"%s | Guardian Water"`, per-page `description` and `openGraph` images. Each service page gets unique meta. Blog posts get article-type Open Graph.
 
 ### Structured data (schema.org)
 

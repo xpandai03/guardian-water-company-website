@@ -33,3 +33,6 @@ next-env.d.ts
 
 # Playwright MCP cache
 .playwright-mcp/
+
+# David's pre-our-work manual Wahoo screenshots — superseded by reference/wahoo/
+WAHOO-PLUMBING/

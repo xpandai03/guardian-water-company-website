@@ -6,6 +6,7 @@ import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
+import { TopUtilityBar } from "@/components/top-utility-bar";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -61,7 +62,9 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-background border-b border-border">
+    <>
+      <TopUtilityBar />
+      <header className="sticky top-0 z-50 bg-background border-b border-border">
       <Container className="flex items-center justify-between py-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group" aria-label="Guardian Water — home">
@@ -193,6 +196,7 @@ export function Header() {
           </Container>
         </div>
       )}
-    </header>
+      </header>
+    </>
   );
 }

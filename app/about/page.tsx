@@ -7,6 +7,7 @@ import { Section } from "@/components/layout/section";
 import { Container } from "@/components/layout/container";
 import { CtaStrip } from "@/components/cta-strip";
 import { WaterRightBadge } from "@/components/water-right-badge";
+import { AnimateInView } from "@/components/layout/animate-in-view";
 
 export const metadata: Metadata = {
   title: "About",
@@ -28,22 +29,24 @@ export default function AboutPage() {
         {/* Company story — TODO(david): replace all three paragraphs with real copy. */}
         <Section>
           <Container size="narrow">
-            <div className="space-y-5 text-base md:text-lg leading-relaxed text-muted-foreground">
-              <p>
-                TODO(david): Paragraph 1 — who you are and how Guardian Water
-                got started. Your background in water treatment and why you
-                chose to serve Northeast Ohio homeowners.
-              </p>
-              <p>
-                TODO(david): Paragraph 2 — how you work: the free on-site water
-                test, an honest recommendation matched to the home, and no
-                high-pressure sales.
-              </p>
-              <p>
-                TODO(david): Paragraph 3 — the mission: cleaner, safer water
-                for local families, and standing behind every installation.
-              </p>
-            </div>
+            <AnimateInView distance="subtle">
+              <div className="space-y-5 text-base md:text-lg leading-relaxed text-muted-foreground">
+                <p>
+                  TODO(david): Paragraph 1 — who you are and how Guardian Water
+                  got started. Your background in water treatment and why you
+                  chose to serve Northeast Ohio homeowners.
+                </p>
+                <p>
+                  TODO(david): Paragraph 2 — how you work: the free on-site
+                  water test, an honest recommendation matched to the home, and
+                  no high-pressure sales.
+                </p>
+                <p>
+                  TODO(david): Paragraph 3 — the mission: cleaner, safer water
+                  for local families, and standing behind every installation.
+                </p>
+              </div>
+            </AnimateInView>
           </Container>
         </Section>
 

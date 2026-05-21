@@ -12,8 +12,9 @@ import { AnimateInView } from "@/components/layout/animate-in-view";
 
 // Home page composition — Phase 2.
 // Section order locked per FRONTEND_PLAN.md §10 step 3.
-// Each section below the hero gets a scroll-triggered fade+rise via
-// AnimateInView. Hero is above the fold and renders immediately.
+// Each section below the hero gets a scroll-triggered reveal via AnimateInView,
+// with varied slide directions for visual interest (Phase C). The hero is
+// above the fold and runs its own page-load animation.
 export default function Home() {
   return (
     <>
@@ -22,7 +23,7 @@ export default function Home() {
         <HomeHero />
         <AnimateInView><TrustStrip /></AnimateInView>
         <AnimateInView><ServicesOverview /></AnimateInView>
-        <AnimateInView><WaterEducation /></AnimateInView>
+        <AnimateInView direction="left"><WaterEducation /></AnimateInView>
         <AnimateInView><ProcessSteps /></AnimateInView>
         <AnimateInView><Benefits /></AnimateInView>
         <AnimateInView><Testimonials /></AnimateInView>

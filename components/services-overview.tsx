@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Droplets, Waves, GlassWater, ArrowRight } from "lucide-react";
+import { Building2, Droplets, GlassWater, ArrowRight } from "lucide-react";
 
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
@@ -10,25 +10,25 @@ import { Section } from "@/components/layout/section";
 // (FRONTEND_PLAN.md §2.C).
 const services = [
   {
-    href: "/services/whole-house-filtration",
+    href: "/services/city-water",
+    icon: Building2,
+    title: "City Water",
+    description:
+      "Municipal water carries chlorine, hardness, and taste or odor issues. We filter and soften it for cleaner water at every tap.",
+  },
+  {
+    href: "/services/well-water",
     icon: Droplets,
-    title: "Whole House Filtration",
+    title: "Well Water",
     description:
-      "Clean, filtered water at every tap. Removes chlorine, sediment, and common contaminants from the water entering your home.",
+      "Private wells often bring iron staining, sulfur smell, and hardness. We diagnose ferrous vs. ferric iron and treat accordingly.",
   },
   {
-    href: "/services/water-softeners",
-    icon: Waves,
-    title: "Water Softeners",
-    description:
-      "Eliminate hard-water scale and protect your plumbing, appliances, and water heater. Gentler on skin, hair, and laundry.",
-  },
-  {
-    href: "/services/reverse-osmosis",
+    href: "/services/ro-systems",
     icon: GlassWater,
-    title: "Reverse Osmosis Systems",
+    title: "RO Systems",
     description:
-      "Drinking-water-grade purification under your kitchen sink. Crisp, great-tasting water for cooking and drinking.",
+      "Reverse osmosis delivers drinking-water-grade purity at the kitchen sink — crisp water for drinking, cooking, and ice.",
   },
 ] as const;
 

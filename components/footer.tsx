@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Phone, Mail, MapPin } from "lucide-react";
 
 import { Container } from "@/components/layout/container";
+import { WaterRightBadge } from "@/components/water-right-badge";
 
 // TODO(david): replace placeholder SVG with real logo asset once received.
 function FooterLogoMark() {
@@ -20,9 +21,9 @@ function FooterLogoMark() {
 }
 
 const servicesLinks = [
-  { href: "/services/whole-house-filtration", label: "Whole House Filtration" },
-  { href: "/services/water-softeners",        label: "Water Softeners" },
-  { href: "/services/reverse-osmosis",        label: "Reverse Osmosis Systems" },
+  { href: "/services/city-water", label: "City Water" },
+  { href: "/services/well-water", label: "Well Water" },
+  { href: "/services/ro-systems", label: "RO Systems" },
 ] as const;
 
 const companyLinks = [
@@ -84,6 +85,8 @@ export function Footer() {
                 </span>
               </li>
             </ul>
+
+            <WaterRightBadge className="mt-6 text-primary-foreground/70" />
           </div>
 
           {/* Column 2: services */}

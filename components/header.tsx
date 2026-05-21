@@ -35,19 +35,19 @@ function LogoMark() {
 
 const services = [
   {
-    href: "/services/whole-house-filtration",
-    title: "Whole House Filtration",
-    description: "Clean, filtered water at every tap.",
+    href: "/services/city-water",
+    title: "City Water",
+    description: "Filtration & softening for municipal water.",
   },
   {
-    href: "/services/water-softeners",
-    title: "Water Softeners",
-    description: "Eliminate hard-water scale and protect appliances.",
+    href: "/services/well-water",
+    title: "Well Water",
+    description: "Iron, sulfur & hardness treatment for private wells.",
   },
   {
-    href: "/services/reverse-osmosis",
-    title: "Reverse Osmosis Systems",
-    description: "Drinking-water-grade purification under your sink.",
+    href: "/services/ro-systems",
+    title: "RO Systems",
+    description: "Drinking-water-grade reverse osmosis.",
   },
 ] as const;
 

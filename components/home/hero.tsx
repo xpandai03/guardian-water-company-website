@@ -1,16 +1,41 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { Phone, ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
+import { cn } from "@/lib/utils";
 
 // Home page hero. Two-column desktop (text left, image right), single-column
 // mobile with image above text per Apex pattern (reference/apex/20-hero-mobile.png).
 // Visual rhythm follows reference/wahoo/01-hero-desktop.png — real-people photo
 // belongs in the right slot. Aqua placeholder used until David sends one.
+//
+// Page-load animation (Phase C): on mount, the left column reveals in a
+// staggered cascade (eyebrow > headline > subhead > CTAs) sliding up; the
+// image slides in from the right. prefers-reduced-motion shows everything
+// immediately via the motion-reduce: variants.
+
+// Transition shared by every revealed element. The motion-reduce variants
+// pin the element to its final state with no transition.
+const REVEAL_BASE =
+  "transition-[opacity,transform] duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[opacity,transform] " +
+  "motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-x-0 motion-reduce:translate-y-0";
+
+const REVEALED = "opacity-100 translate-x-0 translate-y-0";
+const HIDDEN_UP = "opacity-0 translate-y-[30px]";
+const HIDDEN_RIGHT = "opacity-0 translate-x-[60px]";
+
 export function HomeHero() {
+  const [loaded, setLoaded] = useState(false);
+
+  // Flip on after mount so the CSS transition runs once on initial load.
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
+
   return (
     <section className="relative bg-background overflow-hidden">
       {/* Subtle aqua-soft wash behind the image side at md+ */}
@@ -20,26 +45,62 @@ export function HomeHero() {
       />
 
       <Container className="relative grid gap-10 md:grid-cols-2 md:gap-12 lg:gap-16 py-12 md:py-20 lg:py-24 items-center">
-        {/* Image / photo placeholder — order-1 on mobile so it appears above text */}
-        <div className="order-1 md:order-2">
+        {/* Image / photo placeholder — order-1 on mobile so it appears above text.
+            Slides in from the right at 200ms. */}
+        <div
+          className={cn(
+            "order-1 md:order-2",
+            REVEAL_BASE,
+            loaded ? REVEALED : HIDDEN_RIGHT,
+          )}
+          style={{ transitionDelay: "200ms" }}
+        >
           <HeroPhotoPlaceholder />
         </div>
 
-        {/* Text content */}
+        {/* Text content — staggered cascade, sliding up. */}
         <div className="order-2 md:order-1 flex flex-col gap-5">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">
+          <p
+            className={cn(
+              "text-sm font-semibold uppercase tracking-[0.18em] text-accent",
+              REVEAL_BASE,
+              loaded ? REVEALED : HIDDEN_UP,
+            )}
+            style={{ transitionDelay: "100ms" }}
+          >
             For Northeast Ohio Homeowners
           </p>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-primary leading-[1.05]">
+          <h1
+            className={cn(
+              "text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-primary leading-[1.05]",
+              REVEAL_BASE,
+              loaded ? REVEALED : HIDDEN_UP,
+            )}
+            style={{ transitionDelay: "250ms" }}
+          >
             Better Water for Your Home.
           </h1>
 
-          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl">
+          <p
+            className={cn(
+              "text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl",
+              REVEAL_BASE,
+              loaded ? REVEALED : HIDDEN_UP,
+            )}
+            style={{ transitionDelay: "400ms" }}
+          >
             Whole House Filtration, Water Softeners &amp; Reverse Osmosis Systems in Northeast Ohio.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 pt-2">
+          <div
+            className={cn(
+              "flex flex-col sm:flex-row gap-3 pt-2",
+              REVEAL_BASE,
+              loaded ? REVEALED : HIDDEN_UP,
+            )}
+            style={{ transitionDelay: "550ms" }}
+          >
             <Button
               asChild
               size="lg"

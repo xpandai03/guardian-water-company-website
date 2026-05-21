@@ -4,6 +4,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
+import { AnimateInView } from "@/components/layout/animate-in-view";
 import { ProcessSteps } from "@/components/process-steps";
 import { CtaStrip } from "@/components/cta-strip";
 import { ProductCard } from "@/components/services/product-card";
@@ -32,6 +33,7 @@ export interface ServicePageLayoutProps {
 
 // Shared template for the three service sub-pages. Each page supplies its own
 // content; ProcessSteps and CtaStrip are reused as-is (no prop changes).
+// The content sections reveal on scroll via AnimateInView.
 export function ServicePageLayout({
   eyebrow,
   title,
@@ -62,71 +64,77 @@ export function ServicePageLayout({
         </section>
 
         {/* What it does */}
-        <Section>
-          <Container size="narrow">
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">
-              What it does
-            </h2>
-            <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed">
-              {intro}
-            </p>
-          </Container>
-        </Section>
+        <AnimateInView>
+          <Section>
+            <Container size="narrow">
+              <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">
+                What it does
+              </h2>
+              <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed">
+                {intro}
+              </p>
+            </Container>
+          </Section>
+        </AnimateInView>
 
         {/* Recommended products */}
-        <Section bg="muted">
-          <Container>
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">
-              Recommended Systems
-            </h2>
-            <div className="mt-8 space-y-12">
-              {productSections.map((productSection) => {
-                const items = getProductsByCategory(productSection.category);
-                return (
-                  <div key={productSection.category}>
-                    {productSection.heading && (
-                      <h3 className="mb-5 text-lg font-bold text-primary">
-                        {productSection.heading}
-                      </h3>
-                    )}
-                    <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                      {items.map((product) => (
-                        <li key={product.id} className="h-full">
-                          <ProductCard product={product} />
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                );
-              })}
-            </div>
-          </Container>
-        </Section>
+        <AnimateInView>
+          <Section bg="muted">
+            <Container>
+              <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">
+                Recommended Systems
+              </h2>
+              <div className="mt-8 space-y-12">
+                {productSections.map((productSection) => {
+                  const items = getProductsByCategory(productSection.category);
+                  return (
+                    <div key={productSection.category}>
+                      {productSection.heading && (
+                        <h3 className="mb-5 text-lg font-bold text-primary">
+                          {productSection.heading}
+                        </h3>
+                      )}
+                      <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        {items.map((product) => (
+                          <li key={product.id} className="h-full">
+                            <ProductCard product={product} />
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  );
+                })}
+              </div>
+            </Container>
+          </Section>
+        </AnimateInView>
 
         {/* Why it matters in Northeast Ohio */}
-        <Section>
-          <Container size="narrow">
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">
-              Why it matters in Northeast Ohio
-            </h2>
-            <ul className="mt-6 space-y-4">
-              {whyOhio.map((point) => (
-                <li key={point} className="flex gap-3">
-                  <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent-soft">
-                    <Check
-                      className="h-4 w-4 text-accent"
-                      strokeWidth={2.5}
-                      aria-hidden="true"
-                    />
-                  </span>
-                  <span className="text-base leading-relaxed text-muted-foreground">
-                    {point}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </Container>
-        </Section>
+        <AnimateInView>
+          <Section>
+            <Container size="narrow">
+              <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">
+                Why it matters in Northeast Ohio
+              </h2>
+              <ul className="mt-6 space-y-4">
+                {whyOhio.map((point) => (
+                  <li key={point} className="flex gap-3">
+                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent-soft">
+                      <Check
+                        className="h-4 w-4 text-accent"
+                        strokeWidth={2.5}
+                        aria-hidden="true"
+                      />
+                    </span>
+                    <span className="text-base leading-relaxed text-muted-foreground">
+                      {point}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </Container>
+          </Section>
+        </AnimateInView>
 
         {/* Process + final CTA — reused as-is */}
         <ProcessSteps />

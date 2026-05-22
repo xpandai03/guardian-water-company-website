@@ -1,21 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Phone, ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
 import { cn } from "@/lib/utils";
 
-// Home page hero. Two-column desktop (text left, image right), single-column
-// mobile with image above text per Apex pattern (reference/apex/20-hero-mobile.png).
-// Visual rhythm follows reference/wahoo/01-hero-desktop.png — real-people photo
-// belongs in the right slot. Aqua placeholder used until David sends one.
+// Home page hero. Two-column desktop (text left, video right), single-column
+// mobile with the video above text per Apex pattern (reference/apex/20-hero-mobile.png).
+// The right slot holds an autoplaying, muted, looping water video that fills
+// the same 4:3 frame the placeholder used.
 //
 // Page-load animation (Phase C): on mount, the left column reveals in a
 // staggered cascade (eyebrow > headline > subhead > CTAs) sliding up; the
-// image slides in from the right. prefers-reduced-motion shows everything
+// video slides in from the right. prefers-reduced-motion shows everything
 // immediately via the motion-reduce: variants.
 
 // Transition shared by every revealed element. The motion-reduce variants
@@ -45,7 +45,7 @@ export function HomeHero() {
       />
 
       <Container className="relative grid gap-10 md:grid-cols-2 md:gap-12 lg:gap-16 py-12 md:py-20 lg:py-24 items-center">
-        {/* Image / photo placeholder — order-1 on mobile so it appears above text.
+        {/* Hero video — order-1 on mobile so it appears above text.
             Slides in from the right at 200ms. */}
         <div
           className={cn(
@@ -55,7 +55,7 @@ export function HomeHero() {
           )}
           style={{ transitionDelay: "200ms" }}
         >
-          <HeroPhotoPlaceholder />
+          <HeroVideo />
         </div>
 
         {/* Text content — staggered cascade, sliding up. */}
@@ -131,32 +131,37 @@ export function HomeHero() {
   );
 }
 
-// TODO(david): replace this placeholder with a real photo asset. Target:
-// real-people shot of David or a technician on-site (per Wahoo's hero
-// pattern — reference/wahoo/01-hero-desktop.png). 4:3 to 16:10 ratio works.
-function HeroPhotoPlaceholder() {
+// Autoplaying, muted, looping water video in the hero's right slot. Fills a
+// 4:3 frame via object-cover so it scales cleanly across devices. The poster
+// frame shows instantly while the video downloads (or if autoplay is blocked).
+function HeroVideo() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Belt-and-suspenders: force the element muted as a *property* (browsers
+  // require this for autoplay) and kick off playback. A blocked autoplay
+  // (e.g. data-saver mode) just leaves the poster frame visible.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = true;
+    void video.play().catch(() => {});
+  }, []);
+
   return (
-    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-gradient-to-br from-accent/20 via-accent-soft to-accent/10 ring-1 ring-accent/15">
-      {/* Centered water-drop motif as a visual anchor */}
-      <svg
-        viewBox="0 0 200 200"
-        className="absolute inset-0 m-auto h-2/3 w-2/3"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-accent-soft ring-1 ring-accent/15">
+      <video
+        ref={videoRef}
+        className="absolute inset-0 h-full w-full object-cover"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        poster="/hero-water-poster.jpg"
         aria-hidden="true"
       >
-        <path
-          d="M100 20L40 110C40 150 65 180 100 180C135 180 160 150 160 110L100 20Z"
-          className="fill-accent/30"
-        />
-        <path
-          d="M100 60L70 110C70 130 82 150 100 150C118 150 130 130 130 110L100 60Z"
-          className="fill-accent/50"
-        />
-      </svg>
-      <span className="sr-only">
-        Placeholder for hero photo — David&apos;s team photo coming soon.
-      </span>
+        <source src="/hero-water.mp4" type="video/mp4" />
+      </video>
     </div>
   );
 }

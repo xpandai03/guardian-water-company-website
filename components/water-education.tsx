@@ -2,10 +2,11 @@ import { Beaker, AlertTriangle, Droplet, Microscope } from "lucide-react";
 
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
+import { WaterEducationVideo } from "@/components/water-education-video";
 
 // "What's actually in Northeast Ohio tap water?" — AEO-shaped section title
 // (question form) per FRONTEND_PLAN.md §2.D. Two-column desktop, stacked
-// mobile. Left: H2 + intro + icon list. Right: supporting image placeholder.
+// mobile. Left: H2 + intro + icon list. Right: supporting water video.
 // Reference: reference/apex/06-hidden-dangers-desktop.png.
 
 const risks = [
@@ -61,37 +62,11 @@ export function WaterEducation() {
           </ul>
         </div>
 
-        {/* Right: supporting image placeholder */}
+        {/* Right: supporting water video */}
         <div className="md:pl-4">
-          <EducationImagePlaceholder />
+          <WaterEducationVideo />
         </div>
       </Container>
     </Section>
-  );
-}
-
-// TODO(david): replace with a supporting image — options include a NE Ohio
-// county-shaded service-area map, a microscope/water-droplet photo, or a
-// before/after water clarity comparison. See FRONTEND_PLAN.md §9 asset list.
-function EducationImagePlaceholder() {
-  return (
-    <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-gradient-to-br from-accent/15 via-background to-accent/5 ring-1 ring-accent/15">
-      <svg
-        viewBox="0 0 200 200"
-        className="absolute inset-0 m-auto h-3/5 w-3/5 opacity-90"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
-        {/* Concentric water rings motif */}
-        <circle cx="100" cy="100" r="80" className="stroke-accent/40" strokeWidth="2" />
-        <circle cx="100" cy="100" r="55" className="stroke-accent/50" strokeWidth="2" />
-        <circle cx="100" cy="100" r="30" className="stroke-accent/70" strokeWidth="2" />
-        <circle cx="100" cy="100" r="6" className="fill-accent" />
-      </svg>
-      <span className="sr-only">
-        Placeholder for a supporting water-quality image.
-      </span>
-    </div>
   );
 }

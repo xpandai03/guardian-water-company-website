@@ -8,10 +8,9 @@ import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
 import { cn } from "@/lib/utils";
 
-// Home page hero. Two-column desktop (text left, video right), single-column
-// mobile with the video above text per Apex pattern (reference/apex/20-hero-mobile.png).
-// The right slot holds an autoplaying, muted, looping water video that fills
-// the same 4:3 frame the placeholder used.
+// Home page hero. Desktop: text on the left, a full-bleed water video filling
+// the entire right half edge-to-edge. Mobile: a full-width video band above
+// the text (single column).
 //
 // Page-load animation (Phase C): on mount, the left column reveals in a
 // staggered cascade (eyebrow > headline > subhead > CTAs) sliding up; the
@@ -38,26 +37,23 @@ export function HomeHero() {
 
   return (
     <section className="relative bg-background overflow-hidden">
-      {/* Subtle aqua-soft wash behind the image side at md+ */}
+      {/* Hero video. Mobile: a full-width band above the text. Desktop:
+          full-bleed, filling the entire right half of the hero edge-to-edge.
+          Slides in from the right at 200ms on page load. */}
       <div
         aria-hidden="true"
-        className="absolute inset-y-0 right-0 hidden md:block w-1/2 bg-accent-soft"
-      />
+        className={cn(
+          "relative aspect-[4/3] w-full overflow-hidden",
+          "md:absolute md:inset-y-0 md:right-0 md:w-1/2 md:aspect-auto",
+          REVEAL_BASE,
+          loaded ? REVEALED : HIDDEN_RIGHT,
+        )}
+        style={{ transitionDelay: "200ms" }}
+      >
+        <HeroVideo />
+      </div>
 
       <Container className="relative grid gap-10 md:grid-cols-2 md:gap-12 lg:gap-16 py-12 md:py-20 lg:py-24 items-center">
-        {/* Hero video — order-1 on mobile so it appears above text.
-            Slides in from the right at 200ms. */}
-        <div
-          className={cn(
-            "order-1 md:order-2",
-            REVEAL_BASE,
-            loaded ? REVEALED : HIDDEN_RIGHT,
-          )}
-          style={{ transitionDelay: "200ms" }}
-        >
-          <HeroVideo />
-        </div>
-
         {/* Text content — staggered cascade, sliding up. */}
         <div className="order-2 md:order-1 flex flex-col gap-5">
           <p
@@ -131,9 +127,10 @@ export function HomeHero() {
   );
 }
 
-// Autoplaying, muted, looping water video in the hero's right slot. Fills a
-// 4:3 frame via object-cover so it scales cleanly across devices. The poster
-// frame shows instantly while the video downloads (or if autoplay is blocked).
+// Autoplaying, muted, looping water video. Fills its parent via object-cover;
+// the parent owns shape and placement (full-bleed right half on desktop,
+// full-width band on mobile). The poster frame shows instantly while the
+// video downloads, or if autoplay is blocked.
 function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -148,20 +145,17 @@ function HeroVideo() {
   }, []);
 
   return (
-    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-accent-soft ring-1 ring-accent/15">
-      <video
-        ref={videoRef}
-        className="absolute inset-0 h-full w-full object-cover"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        poster="/hero-water-poster.jpg"
-        aria-hidden="true"
-      >
-        <source src="/hero-water.mp4" type="video/mp4" />
-      </video>
-    </div>
+    <video
+      ref={videoRef}
+      className="absolute inset-0 h-full w-full object-cover"
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="auto"
+      poster="/hero-water-poster.jpg"
+    >
+      <source src="/hero-water.mp4" type="video/mp4" />
+    </video>
   );
 }

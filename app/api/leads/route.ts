@@ -1,11 +1,14 @@
 // POST /api/leads — public lead intake endpoint.
 //
-// Flow (BACKEND_PLAN.md §6, minus Twilio for v1; see Session 2B):
+// Flow (BACKEND_PLAN.md §6):
 //   1. Parse JSON body. Non-JSON → 400.
 //   2. Validate with leadSchema (Zod). Invalid → 400 + field errors.
 //   3. submitLead(): refreshAccessToken → clientCreate (with inline property)
 //      → requestCreate. Jobber error → 502 generic. Code/config error → 500 generic.
 //   4. Success → 201 with { ok: true, clientId, requestId }.
+//
+// SMS confirmation is deferred per client request (David, May 22, 2026 call) —
+// the Twilio sender lives dormant at lib/twilio/sms.ts for future re-enable.
 //
 // Error responses are intentionally generic to the public; full detail is
 // logged server-side. Phone numbers / emails are never logged from this
@@ -51,11 +54,6 @@ export async function POST(request: Request): Promise<Response> {
   // 3. Submit to Jobber.
   try {
     const result = await submitLead(parsed.data);
-
-    // TODO(session-2b): fire Twilio confirmation SMS here using
-    // sendLeadConfirmationSms from lib/twilio/sms.ts. Wrap in try/catch so
-    // SMS failure does NOT fail the request — the lead is already in Jobber.
-    // See BACKEND_PLAN.md §6 step 6 + §7.
 
     return NextResponse.json(
       { ok: true, clientId: result.clientId, requestId: result.requestId },

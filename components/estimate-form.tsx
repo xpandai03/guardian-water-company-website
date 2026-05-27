@@ -45,6 +45,7 @@ import {
 } from "@/components/ui/select";
 import { Spinner } from "@/components/ui/spinner";
 import { Textarea } from "@/components/ui/textarea";
+import { SuccessModal } from "@/components/contact/success-modal";
 
 // The form holds the schema INPUT shape — values before Zod runs its transforms
 // (phone normalization) and defaults (notes). zodResolver hands the OUTPUT
@@ -71,6 +72,10 @@ const FORM_FIELD_NAMES: readonly (keyof LeadFormInput)[] = [
 
 export function EstimateForm() {
   const [submitted, setSubmitted] = useState(false);
+  // Modal opens on a successful 201 and closes when the user dismisses it.
+  // After the modal closes, `submitted` is already true so the form has
+  // already transitioned to the brief inline thank-you state behind it.
+  const [modalOpen, setModalOpen] = useState(false);
 
   const form = useForm<LeadFormInput>({
     resolver: zodResolver(leadSchema),
@@ -106,9 +111,11 @@ export function EstimateForm() {
         .json()
         .catch(() => null)) as LeadApiResponse | null;
 
-      // 201 — lead created.
+      // 201 — lead created. Show the modal and flip the form into its
+      // brief inline thank-you state so the user can't re-submit.
       if (res.ok && data?.ok) {
         setSubmitted(true);
+        setModalOpen(true);
         return;
       }
 
@@ -149,23 +156,25 @@ export function EstimateForm() {
     }
   };
 
-  // Success state — replaces the form card entirely (PHASE_A_PLAN.md §3).
+  // Success state — replaces the form card with a brief thank-you while the
+  // SuccessModal renders "What happens next" on top.
   if (submitted) {
     return (
-      <Card className="border-border">
-        <CardContent className="flex flex-col items-center gap-4 py-12 text-center">
-          <CircleCheck
-            className="h-12 w-12 text-cta"
-            strokeWidth={1.75}
-            aria-hidden="true"
-          />
-          <h2 className="text-2xl font-bold text-primary">Request received</h2>
-          <p className="max-w-sm text-muted-foreground leading-relaxed">
-            Thanks — we&apos;ve got your request. David will personally reach
-            out within one business day.
-          </p>
-        </CardContent>
-      </Card>
+      <>
+        <Card className="border-border">
+          <CardContent className="flex flex-col items-center gap-4 py-12 text-center">
+            <CircleCheck
+              className="h-12 w-12 text-cta"
+              strokeWidth={1.75}
+              aria-hidden="true"
+            />
+            <h2 className="text-2xl font-bold text-primary">
+              Request received. Thanks!
+            </h2>
+          </CardContent>
+        </Card>
+        <SuccessModal open={modalOpen} onOpenChange={setModalOpen} />
+      </>
     );
   }
 
@@ -176,7 +185,8 @@ export function EstimateForm() {
           Request your free water test
         </CardTitle>
         <CardDescription>
-          Tell us a little about your home and water — it takes about a minute.
+          Tell us a little about your home and water — it takes about 60
+          seconds.
         </CardDescription>
       </CardHeader>
       <CardContent>

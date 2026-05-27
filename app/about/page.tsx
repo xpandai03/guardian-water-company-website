@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import { User } from "lucide-react";
 
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
@@ -6,13 +8,12 @@ import { PageHero } from "@/components/page-hero";
 import { Section } from "@/components/layout/section";
 import { Container } from "@/components/layout/container";
 import { CtaStrip } from "@/components/cta-strip";
-import { WaterRightBadge } from "@/components/water-right-badge";
 import { AnimateInView } from "@/components/layout/animate-in-view";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Guardian Water is Northeast Ohio's local, family-operated water filtration specialist — honest recommendations and clean installs.",
+    "Guardian Water is a Northeast Ohio water filtration specialist focused on honest recommendations and long-term solutions.",
 };
 
 export default function AboutPage() {
@@ -23,54 +24,184 @@ export default function AboutPage() {
         <PageHero
           eyebrow="About Us"
           title="About Guardian Water"
-          subhead="Northeast Ohio's local, family-operated water filtration specialists."
+          subhead="Northeast Ohio water filtration specialist focused on honest recommendations and long-term solutions."
         />
 
-        {/* Company story — TODO(david): replace all three paragraphs with real copy. */}
+        {/* Who we are */}
         <Section>
           <Container size="narrow">
             <AnimateInView distance="subtle">
-              <div className="space-y-5 text-base md:text-lg leading-relaxed text-muted-foreground">
+              <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">
+                Who we are
+              </h2>
+              <div className="mt-4 space-y-4 text-base md:text-lg leading-relaxed text-muted-foreground">
                 <p>
-                  TODO(david): Paragraph 1 — who you are and how Guardian Water
-                  got started. Your background in water treatment and why you
-                  chose to serve Northeast Ohio homeowners.
+                  Guardian Water was built out of a simple observation: most
+                  homeowners are sold water treatment systems before they fully
+                  understand what&apos;s in their water.
+                </p>
+                <p>We started the company to change that.</p>
+                <p>
+                  Our focus is diagnosing water properly first, then
+                  recommending treatment based on real results — not guesswork,
+                  not one-size-fits-all systems, and not sales quotas.
                 </p>
                 <p>
-                  TODO(david): Paragraph 2 — how you work: the free on-site
-                  water test, an honest recommendation matched to the home, and
-                  no high-pressure sales.
-                </p>
-                <p>
-                  TODO(david): Paragraph 3 — the mission: cleaner, safer water
-                  for local families, and standing behind every installation.
+                  We serve Northeast Ohio because water conditions here vary
+                  significantly from home to home, especially between city
+                  systems and private wells. That variability requires real
+                  testing and local experience to get it right.
                 </p>
               </div>
             </AnimateInView>
           </Container>
         </Section>
 
-        {/* Service area + manufacturer partner */}
+        {/* How we work */}
         <Section bg="muted">
           <Container size="narrow">
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">
-              Serving Northeast Ohio
-            </h2>
-            <p className="mt-4 text-base md:text-lg leading-relaxed text-muted-foreground">
-              Guardian Water serves homeowners across Northeast Ohio, including
-              Cleveland, Akron, Canton, and the surrounding communities.
-            </p>
+            <AnimateInView distance="subtle">
+              <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">
+                How we work
+              </h2>
+              <div className="mt-4 space-y-4 text-base md:text-lg leading-relaxed text-muted-foreground">
+                <p>
+                  Every home starts the same way: with a free on-site water
+                  test.
+                </p>
+                <p>
+                  We test your water directly in your home and review the
+                  results with you in plain language — what&apos;s in your
+                  water, what it means, and what actually matters.
+                </p>
+                <p>
+                  If treatment is needed, we recommend a system based on your
+                  water conditions, home layout, and long-term goals.
+                </p>
+                <p>
+                  There are no pressure tactics and no pre-set packages. The
+                  recommendation is built around your water, not a sales
+                  script.
+                </p>
+              </div>
+            </AnimateInView>
+          </Container>
+        </Section>
 
-            <h2 className="mt-12 text-2xl md:text-3xl font-bold tracking-tight text-primary">
-              Our manufacturer partner
-            </h2>
-            {/* TODO(david): replace with real copy on the Water-Right partnership. */}
-            <p className="mt-4 text-base md:text-lg leading-relaxed text-muted-foreground">
-              TODO(david): one or two sentences on the Water-Right partnership
-              and what it means for customers — equipment quality, warranty,
-              and ongoing support.
-            </p>
-            <WaterRightBadge className="mt-6" />
+        {/* What we stand for */}
+        <Section>
+          <Container size="narrow">
+            <AnimateInView distance="subtle">
+              <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">
+                What we stand for
+              </h2>
+              <div className="mt-4 space-y-4 text-base md:text-lg leading-relaxed text-muted-foreground">
+                <p>
+                  Our goal is simple: better water for Northeast Ohio families
+                  without confusion or guesswork.
+                </p>
+                <p className="font-semibold text-primary">
+                  We believe homeowners should:
+                </p>
+                <ul className="ml-5 list-disc space-y-2">
+                  <li>understand their water clearly</li>
+                  <li>feel confident in the system installed in their home</li>
+                  <li>have long-term support after installation</li>
+                </ul>
+                <p>
+                  Every installation we complete is backed by that standard.
+                </p>
+              </div>
+            </AnimateInView>
+          </Container>
+        </Section>
+
+        {/* David photo placeholder */}
+        <Section bg="muted">
+          <Container size="narrow">
+            <AnimateInView distance="subtle">
+              <div className="grid gap-8 md:grid-cols-[1fr_280px] md:items-center">
+                <div className="space-y-3">
+                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">
+                    The Person Behind Guardian Water
+                  </p>
+                  <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">
+                    David Delahunty
+                  </h2>
+                  <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
+                    Founder · Northeast Ohio water treatment specialist.
+                  </p>
+                </div>
+                {/* TODO(david): replace with real photo of David */}
+                <div className="relative mx-auto aspect-square w-full max-w-[280px] overflow-hidden rounded-2xl bg-accent-soft ring-1 ring-accent/20">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <User
+                      className="h-20 w-20 text-accent/60"
+                      strokeWidth={1.25}
+                      aria-hidden="true"
+                    />
+                  </div>
+                </div>
+              </div>
+            </AnimateInView>
+          </Container>
+        </Section>
+
+        {/* Serving Northeast Ohio */}
+        <Section>
+          <Container size="narrow">
+            <AnimateInView distance="subtle">
+              <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">
+                Serving Northeast Ohio
+              </h2>
+              <div className="mt-4 space-y-4 text-base md:text-lg leading-relaxed text-muted-foreground">
+                <p>
+                  We work with homeowners across Medina, Cuyahoga County and
+                  surrounding communities.
+                </p>
+                <p>
+                  Water conditions vary across the region, which is why local
+                  experience matters — what works in one city may not apply to
+                  another.
+                </p>
+              </div>
+            </AnimateInView>
+          </Container>
+        </Section>
+
+        {/* Our equipment partner */}
+        <Section bg="muted">
+          <Container size="narrow">
+            <AnimateInView distance="subtle">
+              <div className="grid gap-8 md:grid-cols-[1fr_180px] md:items-center">
+                <div>
+                  <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">
+                    Our equipment partner
+                  </h2>
+                  <div className="mt-4 space-y-4 text-base md:text-lg leading-relaxed text-muted-foreground">
+                    <p>We are an authorized dealer of Water-Right systems.</p>
+                    <p>
+                      This partnership gives us access to professionally
+                      engineered, tested, and supported equipment designed for
+                      residential water treatment applications. It also
+                      ensures proper warranty coverage and ongoing manufacturer
+                      support for installed systems.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center justify-center md:justify-end">
+                  <div className="rounded-xl bg-white p-4 ring-1 ring-border">
+                    <Image
+                      src="/products/Water-Right LOGO.jpg"
+                      alt="Water-Right — authorized dealer"
+                      width={1076}
+                      height={929}
+                      className="h-auto w-[140px] object-contain"
+                    />
+                  </div>
+                </div>
+              </div>
+            </AnimateInView>
           </Container>
         </Section>
 

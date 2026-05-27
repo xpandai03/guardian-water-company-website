@@ -58,7 +58,7 @@ export function BusinessInfoCard() {
         </InfoRow>
 
         <InfoRow icon={<Clock className="h-4 w-4" />} label="Hours">
-          Mon–Fri, 9am–9pm
+          Monday–Friday, 9am–9pm
         </InfoRow>
 
         {/* TODO(david): confirm service-area wording */}

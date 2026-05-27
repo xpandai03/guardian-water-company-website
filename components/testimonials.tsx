@@ -1,32 +1,31 @@
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 
-// TODO(david): replace these placeholder testimonials with real Google
-// review pulls (3-5 quotes) once David shares review URLs or screenshots.
-// Keep the same { name, location, quote } shape — no structural changes
-// needed when swapping content.
 const testimonials = [
   {
-    name: "Placeholder Name",
-    location: "Cleveland, OH",
+    name: "Tim",
+    location: "Medina, OH",
     quote:
-      "Honest review pending. Real quote from a Northeast Ohio homeowner about the water test, install experience, and after-service.",
+      "Our shower doors and dishwasher had constant buildup. After installation, the difference was immediate—less spotting, less scrubbing, and water that actually feels better. No upselling, just what we needed.",
   },
   {
-    name: "Placeholder Name",
-    location: "Akron, OH",
+    name: "Brendon C.",
+    location: "Hinckley, OH",
     quote:
-      "Honest review pending. Should ideally mention how the system addressed a specific water issue (taste, hardness, sediment) and the team's professionalism.",
+      "Our well water had a strong sulfur smell that made the house uncomfortable. After install, the smell was gone and the water looks and tastes clean. Huge difference in daily life.",
   },
   {
-    name: "Placeholder Name",
-    location: "Canton, OH",
+    name: "Sheila",
+    location: "Strongsville, OH",
     quote:
-      "Honest review pending. Bonus if it speaks to family-operated trust and a recommendation to a neighbor.",
+      "We stopped buying bottled water after the RO system. The water tastes better and we're saving money every month. Install was clean and simple.",
   },
 ] as const;
 
 function StarRow() {
+  /* TODO(raunek): David mentioned possibly adding Google
+     logo near the 5-star ratings to signal review source.
+     Pending decision. */
   return (
     <div className="flex gap-0.5 mb-4" aria-label="5 out of 5 stars">
       {Array.from({ length: 5 }).map((_, i) => (
@@ -39,19 +38,14 @@ function StarRow() {
 }
 
 function InitialAvatar({ name }: { name: string }) {
-  const initials = name
-    .split(" ")
-    .map((part) => part[0] ?? "")
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
+  const initials = (name.trim()[0] ?? "?").toUpperCase();
 
   return (
     <div
       className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent-soft text-sm font-bold text-accent ring-1 ring-accent/20"
       aria-hidden="true"
     >
-      {initials || "?"}
+      {initials}
     </div>
   );
 }
@@ -62,11 +56,8 @@ export function Testimonials() {
       <Container>
         <div className="text-center mb-12 md:mb-14 max-w-2xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-primary">
-            What our neighbors say
+            Hear From Our Happy Homeowners
           </h2>
-          <p className="mt-3 text-base md:text-lg text-muted-foreground">
-            Real reviews from real Northeast Ohio homeowners (placeholders for now — Google review pull pending).
-          </p>
         </div>
 
         <ul className="grid gap-6 md:grid-cols-3">

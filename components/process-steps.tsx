@@ -5,7 +5,13 @@ import { Section } from "@/components/layout/section";
 // Deep-aqua/navy background section with 3 numbered chips. Mobile stacks
 // vertically. Reference rhythm: reference/wahoo/09-section-7422-desktop.png.
 
-const steps = [
+export interface ProcessStep {
+  n: string;
+  title: string;
+  body: string;
+}
+
+const DEFAULT_STEPS: readonly ProcessStep[] = [
   {
     n: "01",
     title: "Free Water Test",
@@ -23,16 +29,29 @@ const steps = [
   },
 ] as const;
 
-export function ProcessSteps() {
+interface ProcessStepsProps {
+  /** Override the default headline (service pages use "How it works"). */
+  headline?: string;
+  /** Override the default subhead (used by the service pages). */
+  subhead?: string;
+  /** Override the default 3-step content (service pages use shorter copy). */
+  steps?: readonly ProcessStep[];
+}
+
+export function ProcessSteps({
+  headline,
+  subhead,
+  steps = DEFAULT_STEPS,
+}: ProcessStepsProps = {}) {
   return (
     <Section bg="hero">
       <Container>
         <div className="text-center mb-12 md:mb-16 max-w-2xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-hero-foreground">
-            How does it work?
+            {headline ?? "How does it work?"}
           </h2>
           <p className="mt-3 text-base md:text-lg text-hero-foreground/80">
-            Three simple steps from your first call to clean water flowing.
+            {subhead ?? "Three simple steps from your first call to clean water flowing."}
           </p>
         </div>
 

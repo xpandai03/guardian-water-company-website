@@ -1,46 +1,39 @@
-import { Check } from "lucide-react";
+import type { ReactNode } from "react";
 
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Container } from "@/components/layout/container";
-import { Section } from "@/components/layout/section";
-import { AnimateInView } from "@/components/layout/animate-in-view";
-import { ProcessSteps } from "@/components/process-steps";
+import { ProcessSteps, type ProcessStep } from "@/components/process-steps";
 import { CtaStrip } from "@/components/cta-strip";
-import { ProductCard } from "@/components/services/product-card";
-import {
-  getProductsByCategory,
-  type ServiceCategory,
-} from "@/lib/data/products";
-
-interface ProductSection {
-  /** Optional sub-heading — used by the well-water page (ferrous / ferric). */
-  heading?: string;
-  category: ServiceCategory;
-}
 
 export interface ServicePageLayoutProps {
+  // Hero
   eyebrow: string;
   title: string;
   subhead: string;
-  /** "What it does" paragraph. */
-  intro: string;
-  /** "Why it matters in Northeast Ohio" bullet points. */
-  whyOhio: string[];
-  /** One section for city-water / ro-systems; two for well-water. */
-  productSections: ProductSection[];
+
+  // "How it works" — service pages override headline/subhead/steps to keep
+  // their wording distinct from the home-page version of ProcessSteps.
+  processHeadline?: string;
+  processSubhead?: string;
+  processSteps?: readonly ProcessStep[];
+
+  // Body sections (overview → notice? → products → why-it-matters) are
+  // composed by each page using helpers in ./service-sections.tsx.
+  children: ReactNode;
 }
 
-// Shared template for the three service sub-pages. Each page supplies its own
-// content; ProcessSteps and CtaStrip are reused as-is (no prop changes).
-// The content sections reveal on scroll via AnimateInView.
+// Shared chrome for the three service sub-pages. Each page composes its own
+// middle content via children; the layout only owns Header, Hero, the
+// "How it works" process strip, the final CTA, and Footer.
 export function ServicePageLayout({
   eyebrow,
   title,
   subhead,
-  intro,
-  whyOhio,
-  productSections,
+  processHeadline = "How it works",
+  processSubhead = "Simple, transparent process from first call to installation.",
+  processSteps = SERVICE_DEFAULT_STEPS,
+  children,
 }: ServicePageLayoutProps) {
   return (
     <>
@@ -63,84 +56,36 @@ export function ServicePageLayout({
           </Container>
         </section>
 
-        {/* What it does */}
-        <AnimateInView>
-          <Section>
-            <Container size="narrow">
-              <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">
-                What it does
-              </h2>
-              <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed">
-                {intro}
-              </p>
-            </Container>
-          </Section>
-        </AnimateInView>
+        {children}
 
-        {/* Recommended products */}
-        <AnimateInView>
-          <Section bg="muted">
-            <Container>
-              <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">
-                Recommended Systems
-              </h2>
-              <div className="mt-8 space-y-12">
-                {productSections.map((productSection) => {
-                  const items = getProductsByCategory(productSection.category);
-                  return (
-                    <div key={productSection.category}>
-                      {productSection.heading && (
-                        <h3 className="mb-5 text-lg font-bold text-primary">
-                          {productSection.heading}
-                        </h3>
-                      )}
-                      <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                        {items.map((product) => (
-                          <li key={product.id} className="h-full">
-                            <ProductCard product={product} />
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  );
-                })}
-              </div>
-            </Container>
-          </Section>
-        </AnimateInView>
-
-        {/* Why it matters in Northeast Ohio */}
-        <AnimateInView>
-          <Section>
-            <Container size="narrow">
-              <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">
-                Why it matters in Northeast Ohio
-              </h2>
-              <ul className="mt-6 space-y-4">
-                {whyOhio.map((point) => (
-                  <li key={point} className="flex gap-3">
-                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent-soft">
-                      <Check
-                        className="h-4 w-4 text-accent"
-                        strokeWidth={2.5}
-                        aria-hidden="true"
-                      />
-                    </span>
-                    <span className="text-base leading-relaxed text-muted-foreground">
-                      {point}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </Container>
-          </Section>
-        </AnimateInView>
-
-        {/* Process + final CTA — reused as-is */}
-        <ProcessSteps />
+        <ProcessSteps
+          headline={processHeadline}
+          subhead={processSubhead}
+          steps={processSteps}
+        />
         <CtaStrip />
       </main>
       <Footer />
     </>
   );
 }
+
+// David's verbatim 3-step copy for service-page process strips (shorter than
+// the home-page version).
+const SERVICE_DEFAULT_STEPS: readonly ProcessStep[] = [
+  {
+    n: "01",
+    title: "Free Water Test",
+    body: "We test your water on-site and explain exactly what we find.",
+  },
+  {
+    n: "02",
+    title: "System Recommendation",
+    body: "We match you with the right solution based on your water and home.",
+  },
+  {
+    n: "03",
+    title: "Professional Installation",
+    body: "Installed cleanly and correctly, with guidance on long-term care.",
+  },
+] as const;

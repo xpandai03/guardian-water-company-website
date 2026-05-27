@@ -8,18 +8,18 @@ import { Section } from "@/components/layout/section";
 const steps = [
   {
     n: "01",
-    title: "Free Water Test",
-    body: "Schedule online or give us a call. We come out, test your water on-site, and walk you through the results — no cost.",
+    title: "In-Home Water Test",
+    body: "We test your water on-site and explain exactly what we find — hardness, chlorine, iron, sulfur, sediment, and other common Northeast Ohio water issues.",
   },
   {
     n: "02",
-    title: "Custom Recommendation",
-    body: "We explain what's in your water and which system actually fits your home. No upsells, no scare tactics.",
+    title: "Honest System Recommendation",
+    body: "Not every home needs the same setup. We recommend a solution based on your water, home, and goals — without pressure or unnecessary equipment.",
   },
   {
     n: "03",
-    title: "Pro Installation",
-    body: "Our team installs your system cleanly and shows you how to maintain it. We're here for the long haul.",
+    title: "Professional Installation & Support",
+    body: "We install your system cleanly, walk you through everything, and remain available long after the install if you ever need service or filter replacements.",
   },
 ] as const;
 
@@ -32,7 +32,7 @@ export function ProcessSteps() {
             How does it work?
           </h2>
           <p className="mt-3 text-base md:text-lg text-hero-foreground/80">
-            Three simple steps from your first call to clean water flowing.
+            Three simple steps from your first call to clean water.
           </p>
         </div>
 

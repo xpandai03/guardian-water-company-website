@@ -108,16 +108,15 @@ export function HomeHero() {
               </Link>
             </Button>
 
-            {/* TODO(david): replace `#` with real tel: link once David sends his number */}
             <Button
               asChild
               size="lg"
               variant="outline"
               className="rounded-full px-6 border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
             >
-              <a href="#" aria-label="Call (phone number coming soon)">
+              <a href="tel:+14406434222" aria-label="Call Guardian Water at (440) 643-4222">
                 <Phone className="mr-1 h-4 w-4" />
-                Call (xxx) xxx-xxxx
+                Call (440) 643-4222
               </a>
             </Button>
           </div>

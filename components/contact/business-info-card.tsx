@@ -9,11 +9,6 @@ import {
 } from "@/components/ui/card";
 
 // Right-rail contact card for /contact.
-//
-// Every value here is a PLACEHOLDER. David has not finalized his phone number,
-// hours, or email — see PHASE_A_PLAN.md §7. Each is marked TODO(david) and must
-// be filled in before launch. Mirrors the placeholder pattern already used in
-// components/footer.tsx.
 
 function InfoRow({
   icon,
@@ -44,19 +39,26 @@ export function BusinessInfoCard() {
         <CardTitle className="text-lg text-primary">Prefer to talk?</CardTitle>
       </CardHeader>
       <CardContent className="space-y-5 text-sm">
-        {/* TODO(david): real phone number */}
         <InfoRow icon={<Phone className="h-4 w-4" />} label="Call or text">
-          (xxx) xxx-xxxx
+          <a
+            href="tel:+14406434222"
+            className="hover:text-accent transition"
+          >
+            (440) 643-4222
+          </a>
         </InfoRow>
 
-        {/* TODO(david): real email address */}
         <InfoRow icon={<Mail className="h-4 w-4" />} label="Email">
-          hello@guardianwater.com
+          <a
+            href="mailto:sales@guardianwatercompany.com"
+            className="hover:text-accent transition"
+          >
+            sales@guardianwatercompany.com
+          </a>
         </InfoRow>
 
-        {/* TODO(david): real business hours */}
         <InfoRow icon={<Clock className="h-4 w-4" />} label="Hours">
-          Mon–Fri, 8:00am–6:00pm
+          Mon–Fri, 9am–9pm
         </InfoRow>
 
         {/* TODO(david): confirm service-area wording */}

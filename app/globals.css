@@ -23,11 +23,13 @@
   --secondary: #f4f7f9;
   --secondary-foreground: #0b1d2a;
 
-  /* ---- Brand ---- */
-  --primary: #0e2a3a;          /* deep navy — headlines, footer bg */
+  /* ---- Brand ----
+     Primary is the navy sampled from David's Guardian Water logo
+     (Bucket 1, milestone 1). Aqua is demoted to accent only. */
+  --primary: #0b2950;          /* Guardian Water logo navy */
   --primary-foreground: #ffffff;
 
-  --accent: #1ba6c9;           /* aqua/teal — brand mark color */
+  --accent: #1ba6c9;           /* aqua/teal — accent only (icons, links, decorative) */
   --accent-foreground: #ffffff;
   --accent-soft: #e6f6fa;      /* tints, icon-bubble backgrounds */
 
@@ -35,8 +37,8 @@
   --cta: #22a06b;
   --cta-foreground: #ffffff;
 
-  /* ---- Hero / dark section ---- */
-  --hero-bg: #0b3142;
+  /* ---- Hero / dark section — darker shade of logo navy ---- */
+  --hero-bg: #061a36;
   --hero-foreground: #f4fbfd;
 
   /* ---- Forms / borders / focus ---- */
@@ -51,7 +53,7 @@
   /* ---- Charts (used by recharts components if rendered; safe defaults) ---- */
   --chart-1: #1ba6c9;
   --chart-2: #2c7d92;
-  --chart-3: #0e2a3a;
+  --chart-3: #0b2950;
   --chart-4: #22a06b;
   --chart-5: #57c39b;
 

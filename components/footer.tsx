@@ -1,24 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
 import { Container } from "@/components/layout/container";
 import { WaterRightBadge } from "@/components/water-right-badge";
-
-// TODO(david): replace placeholder SVG with real logo asset once received.
-function FooterLogoMark() {
-  return (
-    <svg
-      viewBox="0 0 40 40"
-      className="w-10 h-10"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <path d="M20 4L8 20C8 28 13 36 20 36C27 36 32 28 32 20L20 4Z" className="fill-accent" />
-      <path d="M20 12L14 22C14 26 16.5 30 20 30C23.5 30 26 26 26 22L20 12Z" className="fill-primary" />
-    </svg>
-  );
-}
 
 const servicesLinks = [
   { href: "/services/city-water", label: "City Water" },
@@ -54,30 +39,42 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-4">
           {/* Column 1: brand + NAP */}
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <FooterLogoMark />
-              <div className="flex flex-col leading-none">
-                <span className="font-bold text-lg">
-                  GUARDIAN <span className="text-accent font-normal">WATER</span>
-                </span>
-              </div>
-            </div>
+            <Image
+              src="/brand/guardian-water-text-logo.png"
+              alt="Guardian Water"
+              width={440}
+              height={300}
+              className="mb-4 h-auto w-[200px] object-contain"
+            />
+
             <p className="text-sm text-primary-foreground/70 leading-relaxed mb-6">
               Northeast Ohio&apos;s local water filtration experts. Cleaner, safer water for your home — installed by a team you can call.
             </p>
 
             <ul className="space-y-3 text-sm">
-              {/* TODO(david): real phone number */}
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-accent shrink-0" aria-hidden="true" />
-                <span className="text-primary-foreground/70">(xxx) xxx-xxxx</span>
+                <a
+                  href="tel:+14406434222"
+                  className="text-primary-foreground/70 hover:text-accent transition"
+                >
+                  (440) 643-4222
+                </a>
               </li>
-              {/* TODO(david): real email */}
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-accent shrink-0" aria-hidden="true" />
-                <span className="text-primary-foreground/70">hello@guardianwater.com</span>
+                <a
+                  href="mailto:sales@guardianwatercompany.com"
+                  className="text-primary-foreground/70 hover:text-accent transition"
+                >
+                  sales@guardianwatercompany.com
+                </a>
               </li>
-              {/* TODO(david): real address */}
+              <li className="flex items-center gap-2">
+                <Clock className="w-4 h-4 text-accent shrink-0" aria-hidden="true" />
+                <span className="text-primary-foreground/70">Mon–Fri, 9am–9pm</span>
+              </li>
+              {/* TODO(david): real street address */}
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-accent mt-0.5 shrink-0" aria-hidden="true" />
                 <span className="text-primary-foreground/70">

@@ -19,7 +19,6 @@ export const leadSchema = z.object({
   street:    z.string().trim().min(3, "Street address is required").max(200),
   waterSource: z.enum(WATER_SOURCES),
   notes:     z.string().trim().max(2000).optional().default(""),
-  smsConsent: z.boolean().default(false),
 });
 
 export type LeadInput = z.infer<typeof leadSchema>;

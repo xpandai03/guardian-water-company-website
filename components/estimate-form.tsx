@@ -27,11 +27,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -49,8 +47,8 @@ import { Spinner } from "@/components/ui/spinner";
 import { Textarea } from "@/components/ui/textarea";
 
 // The form holds the schema INPUT shape — values before Zod runs its transforms
-// (phone normalization) and defaults (notes, smsConsent). zodResolver hands the
-// OUTPUT shape (LeadInput) to onSubmit. See AUDIT_PHASE_A.md §2, Flag 2.
+// (phone normalization) and defaults (notes). zodResolver hands the OUTPUT
+// shape (LeadInput) to onSubmit. See AUDIT_PHASE_A.md §2, Flag 2.
 type LeadFormInput = z.input<typeof leadSchema>;
 
 // Mirrors the /api/leads response contract — AUDIT_PHASE_A.md §3.
@@ -69,7 +67,6 @@ const FORM_FIELD_NAMES: readonly (keyof LeadFormInput)[] = [
   "street",
   "waterSource",
   "notes",
-  "smsConsent",
 ];
 
 export function EstimateForm() {
@@ -84,7 +81,6 @@ export function EstimateForm() {
       email: "",
       street: "",
       notes: "",
-      smsConsent: false,
       // waterSource intentionally omitted — no schema default forces a choice.
     },
   });
@@ -93,9 +89,9 @@ export function EstimateForm() {
 
   const onSubmit: SubmitHandler<LeadFormInput> = async (values) => {
     // zodResolver has already validated `values`. Re-run the schema to obtain
-    // the OUTPUT shape — normalized phone, defaulted notes/smsConsent — as a
-    // typed LeadInput. @hookform/resolvers@3 doesn't surface the transformed
-    // type through useForm, so this explicit parse bridges z.input -> z.output
+    // the OUTPUT shape — normalized phone, defaulted notes — as a typed
+    // LeadInput. @hookform/resolvers@3 doesn't surface the transformed type
+    // through useForm, so this explicit parse bridges z.input -> z.output
     // (see AUDIT_PHASE_A.md §2, Flag 2).
     const lead: LeadInput = leadSchema.parse(values);
 
@@ -341,32 +337,6 @@ export function EstimateForm() {
                 )}
               />
 
-              {/* SMS consent — TCPA: renders unchecked, opt-in only. */}
-              <FormField
-                control={form.control}
-                name="smsConsent"
-                render={({ field }) => (
-                  <FormItem className="flex flex-row items-start gap-3 space-y-0 rounded-md border border-border bg-muted/40 p-4">
-                    <FormControl>
-                      <Checkbox
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
-                    <div className="space-y-1">
-                      <FormLabel className="font-normal">
-                        Text me about my request
-                      </FormLabel>
-                      <FormDescription>
-                        I agree to receive SMS messages from Guardian Water
-                        about my request. Message &amp; data rates may apply.
-                        Reply STOP to opt out.
-                      </FormDescription>
-                    </div>
-                  </FormItem>
-                )}
-              />
-
               <Button
                 type="submit"
                 size="lg"
@@ -381,11 +351,6 @@ export function EstimateForm() {
                   "Request my free water test"
                 )}
               </Button>
-
-              <p className="text-center text-xs text-muted-foreground">
-                No obligation. We&apos;ll only use your details to follow up
-                about your water.
-              </p>
             </fieldset>
           </form>
         </Form>

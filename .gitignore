@@ -37,3 +37,5 @@ next-env.d.ts
 
 # David's pre-our-work manual Wahoo screenshots — superseded by reference/wahoo/
 WAHOO-PLUMBING/
+# David's blog source PDFs — content extracted to lib/data/blog-posts.ts
+BlogPosts/

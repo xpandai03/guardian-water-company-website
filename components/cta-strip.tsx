@@ -32,10 +32,10 @@ export function CtaStrip() {
           <div className="relative grid gap-8 md:grid-cols-2 md:gap-12 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
-                Ready for cleaner water?
+                Ready for clean water?
               </h2>
               <p className="mt-3 text-base md:text-lg text-hero-foreground/80 max-w-md">
-                Book your free on-site water test. We&apos;ll show you exactly what&apos;s in your water — and what to do about it.
+                Book a no charge in-home water test. We&apos;ll test your water, walk you through the results, and show you your best options.
               </p>
             </div>
 

@@ -7,15 +7,24 @@ import { Section } from "@/components/layout/section";
 // Pattern: reference/wahoo/02-trust-credentials-desktop.png (centered headline
 // + 3 white cards with checkmark icons). Card content is editable copy in one
 // place per FRONTEND_PLAN.md §2.B.
-const items = [
+type TrustItem = {
+  icon: typeof BadgeCheck;
+  title: string;
+  subtitle?: string;
+  description: string;
+};
+
+const items: readonly TrustItem[] = [
   {
     icon: BadgeCheck,
     title: "Free Water Test",
+    subtitle: "No charge water testing with clear results and honest recommendations",
     description: "On-site water analysis at no cost — no obligation.",
   },
   {
     icon: MapPin,
     title: "Local & Family-Operated",
+    subtitle: "Locally owned and operated right here in Northeast Ohio",
     description: "Based right here in Northeast Ohio, not a national chain.",
   },
   {
@@ -31,10 +40,10 @@ export function TrustStrip() {
       <Container>
         <div className="text-center mb-10 md:mb-14 max-w-2xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-primary">
-            Trusted Across Northeast Ohio
+            Water Treatment Made Simple
           </h2>
           <p className="mt-3 text-base md:text-lg text-muted-foreground">
-            Most homeowners don&apos;t think about their water until something goes wrong. We make the next step easy.
+            Most homeowners don&apos;t think about their water until they notice stains, odors, dry skin, buildup, or concerns about what&apos;s coming from the tap. We make the next step simple.
           </p>
         </div>
 
@@ -48,6 +57,11 @@ export function TrustStrip() {
                 <item.icon className="h-6 w-6 text-accent" strokeWidth={2} aria-hidden="true" />
               </div>
               <h3 className="text-lg font-bold text-primary mb-1.5">{item.title}</h3>
+              {item.subtitle && (
+                <p className="text-sm text-muted-foreground leading-relaxed mb-2">
+                  {item.subtitle}
+                </p>
+              )}
               <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
             </li>
           ))}

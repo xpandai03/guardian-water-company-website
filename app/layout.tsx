@@ -14,6 +14,9 @@ const inter = Inter({
 
 // TODO(david): replace with real business description + locale once David sends
 // the final company copy. Keeping NE Ohio-grounded placeholder for now.
+//
+// Favicon + apple-touch-icon are served via Next.js file-based metadata
+// (app/icon.png, app/apple-icon.png), so no `icons` field is needed here.
 export const metadata: Metadata = {
   title: {
     default: "Guardian Water | Northeast Ohio Water Filtration",
@@ -21,14 +24,6 @@ export const metadata: Metadata = {
   },
   description:
     "Northeast Ohio's local water filtration experts. Whole house filtration, water softeners, and reverse osmosis systems for cleaner, safer water at home.",
-  icons: {
-    icon: [
-      { url: "/icon-light-32x32.png", media: "(prefers-color-scheme: light)" },
-      { url: "/icon-dark-32x32.png", media: "(prefers-color-scheme: dark)" },
-      { url: "/icon.svg", type: "image/svg+xml" },
-    ],
-    apple: "/apple-icon.png",
-  },
 };
 
 export default function RootLayout({

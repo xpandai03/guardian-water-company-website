@@ -2,11 +2,14 @@
 
 import { useEffect, useRef } from "react";
 
-// Autoplaying, muted, looping water video for the "What's actually in
-// Northeast Ohio tap water?" section — fills the square frame the bull's-eye
+// Autoplaying, muted, looping water video for the "What's Commonly Found in
+// Northeast Ohio Water?" section — fills the square frame the bull's-eye
 // placeholder used. Same approach as the home hero video: a poster frame
 // shows instantly while the clip downloads, and a ref-based play() backs up
 // the autoplay attribute (browsers require the muted *property* for autoplay).
+//
+// TODO(raunek): swap coffee video for whiteboard video David attached in
+// May 23 email. File path TBD.
 export function WaterEducationVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
 

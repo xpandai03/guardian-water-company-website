@@ -18,7 +18,7 @@ const risks = [
   {
     icon: AlertTriangle,
     title: "Lead from old plumbing",
-    body: "Older homes across NE Ohio can still leach lead from aging service lines and solder joints.",
+    body: "Older homes across NE Ohio can still leach lead from aging piping infrastructure, service lines and solder joints.",
   },
   {
     icon: Droplet,
@@ -39,7 +39,7 @@ export function WaterEducation() {
         {/* Left: heading + risks */}
         <div>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-primary leading-tight">
-            What&apos;s actually in Northeast Ohio tap water?
+            What&apos;s Commonly Found in Northeast Ohio Water?
           </h2>
           <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed">
             Whether you&apos;re on city water or a private well, your home&apos;s water picks up things you can&apos;t see, taste, or smell. Here&apos;s what most homes deal with.

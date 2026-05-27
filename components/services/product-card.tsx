@@ -1,26 +1,36 @@
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import type { Product } from "@/lib/data/products";
 
-// White-card product display for the service pages. Product photos sit on a
-// white field via `object-contain` so they are never cropped or recolored by
-// their source backgrounds. Cards stretch to equal height inside the
-// `items-stretch` grid in ServiceProductsSection so 1-image and 2-image
-// (combo) entries appear visually uniform.
+// White-card product display for the service pages. Cards stretch to equal
+// height inside the `items-stretch` grid in ServiceProductsSection so
+// 1-image and 2-image (combo) entries appear visually uniform.
+//
+// Products with `detailUrlCategory` set are wrapped in a Next.js Link to
+// their detail page; the whole card is clickable, with a hover state and a
+// "View details" footer link. Components without a detail page render the
+// same markup as a non-clickable article.
 export function ProductCard({ product }: { product: Product }) {
   const isCombo = product.images.length > 1;
+  const hasDetailPage = product.detailUrlCategory !== undefined;
+  const href = hasDetailPage
+    ? `/services/${product.detailUrlCategory}/${product.slug}`
+    : undefined;
 
-  return (
-    <article className="flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card shadow-sm">
+  const card = (
+    <article
+      className={cn(
+        "flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card shadow-sm transition",
+        hasDetailPage && "group-hover:border-accent group-hover:shadow-md",
+      )}
+    >
       {/* Image area — fixed aspect, white background, never cropped. */}
       <div className="border-b border-border bg-white p-4">
-        <div
-          className={cn(
-            "relative w-full overflow-hidden rounded-md bg-white aspect-[4/3]",
-          )}
-        >
+        <div className="relative w-full overflow-hidden rounded-md bg-white aspect-[4/3]">
           {isCombo ? (
             <div className="absolute inset-0 grid grid-cols-2 gap-3 p-2">
               {product.images.map((src) => (
@@ -81,7 +91,24 @@ export function ProductCard({ product }: { product: Product }) {
             ))}
           </ul>
         )}
+        {hasDetailPage && (
+          <span className="mt-auto inline-flex items-center gap-1 pt-3 text-sm font-semibold text-accent transition-all group-hover:gap-2">
+            View details
+            <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+          </span>
+        )}
       </div>
     </article>
+  );
+
+  if (!href) return card;
+  return (
+    <Link
+      href={href}
+      className="group block h-full"
+      aria-label={`${product.name} — view details`}
+    >
+      {card}
+    </Link>
   );
 }

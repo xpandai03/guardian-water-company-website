@@ -50,16 +50,20 @@ export function Header() {
     <>
       <TopUtilityBar />
       <header className="sticky top-0 z-50 bg-background border-b border-border">
-      <Container className="flex items-center justify-between py-4">
-        {/* Logo */}
+      <Container className="flex items-center justify-between py-2 md:py-3">
+        {/* Mobile-only spacer matching the hamburger width so the centered
+            logo (justify-between + 3 equal-ish children) sits in the middle. */}
+        <div className="md:hidden w-10 shrink-0" aria-hidden="true" />
+
+        {/* Logo — centered on mobile, left-aligned on desktop */}
         <Link href="/" className="flex items-center group" aria-label="Guardian Water — home">
           <Image
             src="/brand/guardian-water-icon-logo.png"
             alt="Guardian Water"
-            width={112}
-            height={112}
+            width={400}
+            height={400}
             priority
-            className="h-11 w-auto object-contain"
+            className="h-20 md:h-28 w-auto object-contain"
           />
         </Link>
 

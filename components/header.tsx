@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
@@ -17,22 +18,6 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
-
-// TODO(david): replace placeholder SVG with real logo asset once received.
-function LogoMark() {
-  return (
-    <svg
-      viewBox="0 0 40 40"
-      className="w-9 h-9"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <path d="M20 4L8 20C8 28 13 36 20 36C27 36 32 28 32 20L20 4Z" className="fill-accent" />
-      <path d="M20 12L14 22C14 26 16.5 30 20 30C23.5 30 26 26 26 22L20 12Z" className="fill-background" />
-    </svg>
-  );
-}
 
 const services = [
   {
@@ -67,13 +52,15 @@ export function Header() {
       <header className="sticky top-0 z-50 bg-background border-b border-border">
       <Container className="flex items-center justify-between py-4">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 group" aria-label="Guardian Water — home">
-          <LogoMark />
-          <div className="flex flex-col leading-none">
-            <span className="font-bold text-lg text-primary">
-              GUARDIAN <span className="text-accent font-normal">WATER</span>
-            </span>
-          </div>
+        <Link href="/" className="flex items-center group" aria-label="Guardian Water — home">
+          <Image
+            src="/brand/guardian-water-icon-logo.png"
+            alt="Guardian Water"
+            width={112}
+            height={112}
+            priority
+            className="h-11 w-auto object-contain"
+          />
         </Link>
 
         {/* Desktop nav */}
@@ -119,8 +106,6 @@ export function Header() {
 
         {/* CTA + mobile toggle */}
         <div className="flex items-center gap-2">
-          {/* TODO(david): when his real phone number arrives, add a tel: link here
-              on desktop similar to Wahoo's header (reference/wahoo/01-hero-desktop.png). */}
           <Button
             asChild
             className="hidden sm:inline-flex bg-cta hover:bg-cta/90 text-cta-foreground font-semibold rounded-full px-5"

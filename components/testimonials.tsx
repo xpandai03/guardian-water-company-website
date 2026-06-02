@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 
@@ -22,17 +24,25 @@ const testimonials = [
   },
 ] as const;
 
+// Google G logo (signals the review source) followed by 5 gold stars, sat on
+// one baseline. The logo keeps its native aspect ratio, sized to ~20px tall.
 function StarRow() {
-  /* TODO: Add Google G logo inline with 5-star ratings — awaiting asset from Raunek.
-     Per David (May 27): one ~20px G mark per card, vertically centered with the
-     star row (before/after the stars) to signal the review source. */
   return (
-    <div className="flex gap-0.5 mb-4" aria-label="5 out of 5 stars">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <span key={i} className="text-cta text-lg leading-none" aria-hidden="true">
-          ★
-        </span>
-      ))}
+    <div className="flex items-center gap-1.5 mb-4">
+      <Image
+        src="/brand/google-g-logo.png"
+        alt="Google"
+        width={113}
+        height={62}
+        className="h-5 w-auto object-contain"
+      />
+      <div className="flex gap-0.5" aria-label="5 out of 5 stars">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <span key={i} className="text-amber-500 text-lg leading-none" aria-hidden="true">
+            ★
+          </span>
+        ))}
+      </div>
     </div>
   );
 }

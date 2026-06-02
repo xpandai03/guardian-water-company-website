@@ -34,9 +34,9 @@
   --accent-soft: #e6f6fa;      /* tints, icon-bubble backgrounds */
 
   /* ---- CTA (aqua, per David May 27) — sampled from the logo ring; a touch
-     deeper/more saturated than --accent so buttons read as the brand aqua
-     while keeping white text legible. ---- */
-  --cta: #0094a2;
+     deeper/more saturated than --accent so buttons read as the brand aqua.
+     Deepened to #008595 for WCAG AA white-text contrast (~4.4:1). ---- */
+  --cta: #008595;
   --cta-foreground: #ffffff;
 
   /* ---- Hero / dark section — darker shade of logo navy ---- */

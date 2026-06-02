@@ -5,8 +5,8 @@ import {
   ServiceOverview2Col,
   ServiceColumn,
   ServiceBulletList,
+  ServiceContentMediaSplit,
   ServiceProductsSection,
-  ServiceWhyItMatters,
 } from "@/components/services/service-sections";
 
 export const metadata: Metadata = {
@@ -105,17 +105,31 @@ export default function WellWaterPage() {
         ]}
       />
 
-      <ServiceWhyItMatters
-        intro="Well water in this region is highly variable — even neighboring homes can have completely different water conditions."
-        subhead="Common effects include:"
-        bullets={[
-          "Orange or brown staining on fixtures and laundry",
-          "Sulfur odors in showers and faucets",
-          "Reduced lifespan of plumbing and appliances",
-          "Frequent cleaning and maintenance issues",
-        ]}
-        closing="Proper treatment depends on matching the system to your exact water chemistry — not assumptions."
-      />
+      <ServiceContentMediaSplit
+        heading="Why it matters in Northeast Ohio"
+        image={{
+          src: "/assets/david/sink-photo.png",
+          alt: "Clean water from kitchen sink in a Northeast Ohio home",
+        }}
+      >
+        <p>
+          Well water in this region is highly variable — even neighboring
+          homes can have completely different water conditions.
+        </p>
+        <p className="font-semibold text-primary">Common effects include:</p>
+        <ServiceBulletList
+          items={[
+            "Orange or brown staining on fixtures and laundry",
+            "Sulfur odors in showers and faucets",
+            "Reduced lifespan of plumbing and appliances",
+            "Frequent cleaning and maintenance issues",
+          ]}
+        />
+        <p>
+          Proper treatment depends on matching the system to your exact water
+          chemistry — not assumptions.
+        </p>
+      </ServiceContentMediaSplit>
     </ServicePageLayout>
   );
 }

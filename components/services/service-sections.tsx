@@ -186,22 +186,47 @@ export function ServiceProductsSection({
   heading = "Recommended Systems",
   intro,
   sections,
+  image,
 }: {
   heading?: string;
   intro?: string;
   sections: readonly ProductSubsection[];
+  image?: { src: string; alt: string };
 }) {
+  const header = (
+    <>
+      <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">
+        {heading}
+      </h2>
+      {intro && (
+        <p className="mt-3 max-w-3xl text-base md:text-lg text-muted-foreground leading-relaxed">
+          {intro}
+        </p>
+      )}
+    </>
+  );
+
   return (
     <AnimateInView>
       <Section bg="muted">
         <Container>
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">
-            {heading}
-          </h2>
-          {intro && (
-            <p className="mt-3 max-w-3xl text-base md:text-lg text-muted-foreground leading-relaxed">
-              {intro}
-            </p>
+          {image ? (
+            // Header + intro paired with a photo on the right; the product grid
+            // stays full-width below so the cards don't get squeezed.
+            <div className="grid items-center gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
+              <div>{header}</div>
+              <div className="relative mx-auto aspect-[4/5] w-full max-w-[420px] overflow-hidden rounded-2xl ring-1 ring-border md:max-w-none">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                />
+              </div>
+            </div>
+          ) : (
+            header
           )}
           <div className="mt-8 space-y-12">
             {sections.map((section) => {

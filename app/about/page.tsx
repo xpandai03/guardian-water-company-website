@@ -26,31 +26,45 @@ export default function AboutPage() {
           subhead="Northeast Ohio water filtration specialist focused on honest recommendations and long-term solutions."
         />
 
-        {/* Who we are */}
+        {/* Who we are — paired with a photo of David installing a system. */}
         <Section>
-          <Container size="narrow">
+          <Container>
             <AnimateInView distance="subtle">
-              <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">
-                Who we are
-              </h2>
-              <div className="mt-4 space-y-4 text-base md:text-lg leading-relaxed text-muted-foreground">
-                <p>
-                  Guardian Water was built out of a simple observation: most
-                  homeowners are sold water treatment systems before they fully
-                  understand what&apos;s in their water.
-                </p>
-                <p>We started the company to change that.</p>
-                <p>
-                  Our focus is diagnosing water properly first, then
-                  recommending treatment based on real results — not guesswork,
-                  not one-size-fits-all systems, and not sales quotas.
-                </p>
-                <p>
-                  We serve Northeast Ohio because water conditions here vary
-                  significantly from home to home, especially between city
-                  systems and private wells. That variability requires real
-                  testing and local experience to get it right.
-                </p>
+              <div className="grid items-center gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
+                <div>
+                  <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">
+                    Who we are
+                  </h2>
+                  <div className="mt-4 space-y-4 text-base md:text-lg leading-relaxed text-muted-foreground">
+                    <p>
+                      Guardian Water was built out of a simple observation: most
+                      homeowners are sold water treatment systems before they
+                      fully understand what&apos;s in their water.
+                    </p>
+                    <p>We started the company to change that.</p>
+                    <p>
+                      Our focus is diagnosing water properly first, then
+                      recommending treatment based on real results — not
+                      guesswork, not one-size-fits-all systems, and not sales
+                      quotas.
+                    </p>
+                    <p>
+                      We serve Northeast Ohio because water conditions here vary
+                      significantly from home to home, especially between city
+                      systems and private wells. That variability requires real
+                      testing and local experience to get it right.
+                    </p>
+                  </div>
+                </div>
+                <div className="relative mx-auto aspect-[4/5] w-full max-w-[420px] overflow-hidden rounded-2xl ring-1 ring-border md:max-w-none">
+                  <Image
+                    src="/assets/david/install-photo.png"
+                    alt="David Delahunty installing a Guardian Water filtration system"
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                  />
+                </div>
               </div>
             </AnimateInView>
           </Container>

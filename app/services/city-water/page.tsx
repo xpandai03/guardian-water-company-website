@@ -23,8 +23,14 @@ export default function CityWaterPage() {
       subhead="Cleaner, better-tasting water for your Northeast Ohio home — from every tap."
     >
       {/* "What this system does" — moved up to lead the page (less blank
-          space per David). E5 adds the sink photo alongside it. */}
-      <ServiceContentMediaSplit heading="What this system does">
+          space per David), paired with the kitchen-sink photo. */}
+      <ServiceContentMediaSplit
+        heading="What this system does"
+        image={{
+          src: "/assets/david/sink-photo.png",
+          alt: "Clean water flowing from kitchen sink",
+        }}
+      >
         <p>
           Even though municipal water is treated for safety, it can still
           contain chlorine or chloramine, hardness minerals, and other

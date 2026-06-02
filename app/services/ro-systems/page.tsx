@@ -56,6 +56,10 @@ export default function RoSystemsPage() {
       <ServiceProductsSection
         intro="We size and select your RO system based on household usage, water test results, and whether it will be connected to additional appliances like refrigerators or ice makers."
         sections={[{ category: "ro" }]}
+        image={{
+          src: "/assets/david/under-sink-photo.png",
+          alt: "Under-sink reverse osmosis installation",
+        }}
       />
 
       {/* "What homeowners notice" + "Why it matters" — side-by-side pair per David. */}

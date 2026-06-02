@@ -119,7 +119,7 @@ export default function AboutPage() {
         <Section bg="muted">
           <Container size="narrow">
             <AnimateInView distance="subtle">
-              <div className="grid gap-8 md:grid-cols-[1fr_180px] md:items-center">
+              <div className="grid gap-8 md:grid-cols-[1fr_300px] md:items-center">
                 <div>
                   <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">
                     Our equipment partner
@@ -136,13 +136,13 @@ export default function AboutPage() {
                   </div>
                 </div>
                 <div className="flex items-center justify-center md:justify-end">
-                  <div className="rounded-xl bg-white p-4 ring-1 ring-border">
+                  <div className="rounded-xl bg-white p-5 ring-1 ring-border">
                     <Image
                       src="/products/Water-Right LOGO.jpg"
                       alt="Water-Right — authorized dealer"
                       width={1076}
                       height={929}
-                      className="h-auto w-[140px] object-contain"
+                      className="h-auto w-[260px] max-w-full object-contain"
                     />
                   </div>
                 </div>

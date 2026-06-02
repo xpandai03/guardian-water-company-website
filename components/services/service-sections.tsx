@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 import { Check } from "lucide-react";
 
 import { Container } from "@/components/layout/container";
@@ -30,6 +31,75 @@ export function ServiceOverview2Col({
           <div className="grid gap-10 md:grid-cols-2 md:gap-12 lg:gap-16 items-start">
             <div>{left}</div>
             <div>{right}</div>
+          </div>
+        </Container>
+      </Section>
+    </AnimateInView>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// ServiceContentMediaSplit — a single content block that optionally pairs with
+// a photo. Without `image` it renders one full-width (narrow) column; with
+// `image` it becomes a 2-column content+photo split on desktop that stacks on
+// mobile. `imageSide` controls whether the photo sits left or right of the
+// copy. Used for the David photo placements (May 27) and the "moved up"
+// city-water intro.
+// ---------------------------------------------------------------------------
+export function ServiceContentMediaSplit({
+  heading,
+  children,
+  image,
+  imageSide = "right",
+  bg,
+}: {
+  heading: string;
+  children: ReactNode;
+  image?: { src: string; alt: string };
+  imageSide?: "left" | "right";
+  bg?: "muted";
+}) {
+  if (!image) {
+    return (
+      <AnimateInView>
+        <Section bg={bg}>
+          <Container size="narrow">
+            <ServiceColumn heading={heading}>{children}</ServiceColumn>
+          </Container>
+        </Section>
+      </AnimateInView>
+    );
+  }
+
+  const media = (
+    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl ring-1 ring-border">
+      <Image
+        src={image.src}
+        alt={image.alt}
+        fill
+        className="object-cover"
+        sizes="(min-width: 768px) 50vw, 100vw"
+      />
+    </div>
+  );
+  const content = <ServiceColumn heading={heading}>{children}</ServiceColumn>;
+
+  return (
+    <AnimateInView>
+      <Section bg={bg}>
+        <Container>
+          <div className="grid items-center gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
+            {imageSide === "left" ? (
+              <>
+                {media}
+                {content}
+              </>
+            ) : (
+              <>
+                {content}
+                {media}
+              </>
+            )}
           </div>
         </Container>
       </Section>

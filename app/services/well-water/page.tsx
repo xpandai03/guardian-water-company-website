@@ -50,21 +50,35 @@ export default function WellWaterPage() {
         right={
           <ServiceColumn heading="Why iron problems look different">
             <p>Iron can show up in two different ways:</p>
-            <dl className="space-y-4">
+            <div className="space-y-4">
               <div>
-                <dt className="font-semibold text-primary">Ferrous Iron</dt>
-                <dd className="mt-1 text-muted-foreground">
-                  invisible at first, but turns orange or brown when exposed to
-                  air
-                </dd>
+                <h3 className="font-semibold text-primary">Ferrous Iron</h3>
+                <ul className="mt-1.5 space-y-1.5">
+                  <li className="flex gap-2.5 text-muted-foreground">
+                    <span aria-hidden="true" className="text-accent">
+                      —
+                    </span>
+                    <span>
+                      Invisible at first, but turns orange or brown when exposed
+                      to air
+                    </span>
+                  </li>
+                </ul>
               </div>
               <div>
-                <dt className="font-semibold text-primary">Ferric Iron</dt>
-                <dd className="mt-1 text-muted-foreground">
-                  already oxidized, appearing rusty directly from the tap
-                </dd>
+                <h3 className="font-semibold text-primary">Ferric Iron</h3>
+                <ul className="mt-1.5 space-y-1.5">
+                  <li className="flex gap-2.5 text-muted-foreground">
+                    <span aria-hidden="true" className="text-accent">
+                      —
+                    </span>
+                    <span>
+                      Already oxidized, appearing rusty directly from the tap
+                    </span>
+                  </li>
+                </ul>
               </div>
-            </dl>
+            </div>
             <p>
               The treatment needed depends on which type is present — and many
               homes have a mix of both.

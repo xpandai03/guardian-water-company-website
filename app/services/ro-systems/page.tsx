@@ -5,9 +5,7 @@ import {
   ServiceOverview2Col,
   ServiceColumn,
   ServiceBulletList,
-  ServiceNoticeList,
   ServiceProductsSection,
-  ServiceWhyItMatters,
 } from "@/components/services/service-sections";
 
 export const metadata: Metadata = {
@@ -55,31 +53,47 @@ export default function RoSystemsPage() {
         }
       />
 
-      <ServiceNoticeList
-        heading="What homeowners notice"
-        bullets={[
-          "Cleaner, crisp-tasting drinking water",
-          "Better coffee and cooking results",
-          "No bottled water dependency",
-          "Cleaner ice from refrigerator lines",
-          "Consistent quality straight from the tap",
-        ]}
-      />
-
       <ServiceProductsSection
         intro="We size and select your RO system based on household usage, water test results, and whether it will be connected to additional appliances like refrigerators or ice makers."
         sections={[{ category: "ro" }]}
+        image={{
+          src: "/assets/david/under-sink-photo.png",
+          alt: "Under-sink reverse osmosis installation",
+        }}
       />
 
-      <ServiceWhyItMatters
-        intro="Even after whole-home filtration, many households choose RO as an added layer of purification for drinking water."
-        subhead="It helps ensure:"
-        bullets={[
-          "consistently clean taste regardless of source water fluctuations",
-          "reduced reliance on bottled water",
-          "improved quality for cooking and beverages",
-          "cleaner ice and refrigerator water supply",
-        ]}
+      {/* "What homeowners notice" + "Why it matters" — side-by-side pair per David. */}
+      <ServiceOverview2Col
+        left={
+          <ServiceColumn heading="What homeowners notice">
+            <ServiceBulletList
+              items={[
+                "Cleaner, crisp-tasting drinking water",
+                "Better coffee and cooking results",
+                "No bottled water dependency",
+                "Cleaner ice from refrigerator lines",
+                "Consistent quality straight from the tap",
+              ]}
+            />
+          </ServiceColumn>
+        }
+        right={
+          <ServiceColumn heading="Why it matters in Northeast Ohio">
+            <p>
+              Even after whole-home filtration, many households choose RO as an
+              added layer of purification for drinking water.
+            </p>
+            <p className="font-semibold text-primary">It helps ensure:</p>
+            <ServiceBulletList
+              items={[
+                "consistently clean taste regardless of source water fluctuations",
+                "reduced reliance on bottled water",
+                "improved quality for cooking and beverages",
+                "cleaner ice and refrigerator water supply",
+              ]}
+            />
+          </ServiceColumn>
+        }
       />
     </ServicePageLayout>
   );

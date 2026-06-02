@@ -11,21 +11,17 @@ type TrustItem = {
   icon: typeof BadgeCheck;
   title: string;
   subtitle?: string;
-  description: string;
+  description?: string;
 };
 
 const items: readonly TrustItem[] = [
   {
     icon: BadgeCheck,
     title: "Free Water Test",
-    subtitle: "No charge water testing with clear results and honest recommendations",
-    description: "On-site water analysis at no cost — no obligation.",
   },
   {
     icon: MapPin,
     title: "Local & Family-Operated",
-    subtitle: "Locally owned and operated right here in Northeast Ohio",
-    description: "Based right here in Northeast Ohio, not a national chain.",
   },
   {
     icon: Handshake,

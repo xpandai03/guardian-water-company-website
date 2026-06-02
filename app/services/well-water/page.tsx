@@ -5,8 +5,8 @@ import {
   ServiceOverview2Col,
   ServiceColumn,
   ServiceBulletList,
+  ServiceContentMediaSplit,
   ServiceProductsSection,
-  ServiceWhyItMatters,
 } from "@/components/services/service-sections";
 
 export const metadata: Metadata = {
@@ -50,21 +50,35 @@ export default function WellWaterPage() {
         right={
           <ServiceColumn heading="Why iron problems look different">
             <p>Iron can show up in two different ways:</p>
-            <dl className="space-y-4">
+            <div className="space-y-4">
               <div>
-                <dt className="font-semibold text-primary">Ferrous Iron</dt>
-                <dd className="mt-1 text-muted-foreground">
-                  invisible at first, but turns orange or brown when exposed to
-                  air
-                </dd>
+                <h3 className="font-semibold text-primary">Ferrous Iron</h3>
+                <ul className="mt-1.5 space-y-1.5">
+                  <li className="flex gap-2.5 text-muted-foreground">
+                    <span aria-hidden="true" className="text-accent">
+                      —
+                    </span>
+                    <span>
+                      Invisible at first, but turns orange or brown when exposed
+                      to air
+                    </span>
+                  </li>
+                </ul>
               </div>
               <div>
-                <dt className="font-semibold text-primary">Ferric Iron</dt>
-                <dd className="mt-1 text-muted-foreground">
-                  already oxidized, appearing rusty directly from the tap
-                </dd>
+                <h3 className="font-semibold text-primary">Ferric Iron</h3>
+                <ul className="mt-1.5 space-y-1.5">
+                  <li className="flex gap-2.5 text-muted-foreground">
+                    <span aria-hidden="true" className="text-accent">
+                      —
+                    </span>
+                    <span>
+                      Already oxidized, appearing rusty directly from the tap
+                    </span>
+                  </li>
+                </ul>
               </div>
-            </dl>
+            </div>
             <p>
               The treatment needed depends on which type is present — and many
               homes have a mix of both.
@@ -91,17 +105,31 @@ export default function WellWaterPage() {
         ]}
       />
 
-      <ServiceWhyItMatters
-        intro="Well water in this region is highly variable — even neighboring homes can have completely different water conditions."
-        subhead="Common effects include:"
-        bullets={[
-          "Orange or brown staining on fixtures and laundry",
-          "Sulfur odors in showers and faucets",
-          "Reduced lifespan of plumbing and appliances",
-          "Frequent cleaning and maintenance issues",
-        ]}
-        closing="Proper treatment depends on matching the system to your exact water chemistry — not assumptions."
-      />
+      <ServiceContentMediaSplit
+        heading="Why it matters in Northeast Ohio"
+        image={{
+          src: "/assets/david/sink-photo.png",
+          alt: "Clean water from kitchen sink in a Northeast Ohio home",
+        }}
+      >
+        <p>
+          Well water in this region is highly variable — even neighboring
+          homes can have completely different water conditions.
+        </p>
+        <p className="font-semibold text-primary">Common effects include:</p>
+        <ServiceBulletList
+          items={[
+            "Orange or brown staining on fixtures and laundry",
+            "Sulfur odors in showers and faucets",
+            "Reduced lifespan of plumbing and appliances",
+            "Frequent cleaning and maintenance issues",
+          ]}
+        />
+        <p>
+          Proper treatment depends on matching the system to your exact water
+          chemistry — not assumptions.
+        </p>
+      </ServiceContentMediaSplit>
     </ServicePageLayout>
   );
 }

@@ -228,6 +228,26 @@ export const products: Product[] = [
     waterRightUrl: "https://www.water-right.com/products/sanitizer-plus/",
   },
 
+  // ===== Well water: ferric iron =====
+  // Ordered IMPFE + IMP first per David (May 27): lead with the high-capacity
+  // air-injection solution, then the dual-iron combo below.
+  {
+    id: "impfe-imp",
+    slug: "impfe-imp",
+    name: "IMPFE + IMP System",
+    brand: "Water-Right",
+    category: ["well-water-ferric"],
+    detailUrlCategory: "well-water",
+    images: ["/products/IMPFE.jpg", "/products/IMP.jpg"],
+    description:
+      "High-capacity solution for more severe iron and sulfur conditions. Ideal for wells with heavy staining, odor, or long-term untreated water issues.",
+    tagline:
+      "Air-injection iron and sulfur removal paired with a high-capacity water softener.",
+    fullDescription:
+      "This combo pairs the Impression Plus® Air System (air-injection oxidation for severe iron and sulfur conditions) with the Impression Plus Series® Softener for hardness treatment. It is our recommended solution for wells with heavy staining, persistent odor, or long-term untreated water issues.",
+    comboComponents: ["impfe", "imp"],
+  },
+
   // ===== Well water: dual-iron combo (renders in BOTH ferrous and ferric) =====
   {
     id: "asp2-imps",
@@ -245,24 +265,6 @@ export const products: Product[] = [
     fullDescription:
       "This combo pairs the Sanitizer Plus Series® Conditioner (softening + iron + manganese + pH correction in a single tank) with the Impression Plus® Air System (air-injection oxidation for sulfur and iron precipitate removal). It is used when both dissolved and already-oxidized iron are present — or when sulfur odor and hardness need to be tackled together.",
     comboComponents: ["asp2", "imps"],
-  },
-
-  // ===== Well water: ferric iron =====
-  {
-    id: "impfe-imp",
-    slug: "impfe-imp",
-    name: "IMPFE + IMP System",
-    brand: "Water-Right",
-    category: ["well-water-ferric"],
-    detailUrlCategory: "well-water",
-    images: ["/products/IMPFE.jpg", "/products/IMP.jpg"],
-    description:
-      "High-capacity solution for more severe iron and sulfur conditions. Ideal for wells with heavy staining, odor, or long-term untreated water issues.",
-    tagline:
-      "Air-injection iron and sulfur removal paired with a high-capacity water softener.",
-    fullDescription:
-      "This combo pairs the Impression Plus® Air System (air-injection oxidation for severe iron and sulfur conditions) with the Impression Plus Series® Softener for hardness treatment. It is our recommended solution for wells with heavy staining, persistent odor, or long-term untreated water issues.",
-    comboComponents: ["impfe", "imp"],
   },
 
   // ===== Reverse osmosis =====

@@ -72,7 +72,7 @@ export function ServiceContentMediaSplit({
   }
 
   const media = (
-    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl ring-1 ring-border">
+    <div className="relative mx-auto aspect-[4/5] w-full max-w-[420px] overflow-hidden rounded-2xl ring-1 ring-border md:max-w-none">
       <Image
         src={image.src}
         alt={image.alt}

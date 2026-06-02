@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 import { Phone, ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -37,11 +38,11 @@ export function HomeHero() {
 
   return (
     <section className="relative bg-background overflow-hidden">
-      {/* Hero video. Mobile: a full-width band above the text. Desktop:
-          full-bleed, filling the entire right half of the hero edge-to-edge.
-          Slides in from the right at 200ms on page load. */}
+      {/* Hero photo — David in front of the Guardian Water truck. Mobile: a
+          full-width band above the text. Desktop: full-bleed, filling the
+          entire right half of the hero edge-to-edge. Slides in from the right
+          at 200ms on page load. */}
       <div
-        aria-hidden="true"
         className={cn(
           "relative aspect-[4/3] w-full overflow-hidden",
           "md:absolute md:inset-y-0 md:right-0 md:w-1/2 md:aspect-auto",
@@ -50,7 +51,14 @@ export function HomeHero() {
         )}
         style={{ transitionDelay: "200ms" }}
       >
-        <HeroVideo />
+        <Image
+          src="/assets/david/guardian-water-truck.png"
+          alt="David Delahunty in front of Guardian Water truck"
+          fill
+          priority
+          className="object-cover"
+          sizes="(min-width: 768px) 50vw, 100vw"
+        />
       </div>
 
       <Container className="relative grid gap-10 md:grid-cols-2 md:gap-12 lg:gap-16 py-12 md:py-20 lg:py-24 items-center">
@@ -123,38 +131,5 @@ export function HomeHero() {
         </div>
       </Container>
     </section>
-  );
-}
-
-// Autoplaying, muted, looping water video. Fills its parent via object-cover;
-// the parent owns shape and placement (full-bleed right half on desktop,
-// full-width band on mobile). The poster frame shows instantly while the
-// video downloads, or if autoplay is blocked.
-function HeroVideo() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  // Belt-and-suspenders: force the element muted as a *property* (browsers
-  // require this for autoplay) and kick off playback. A blocked autoplay
-  // (e.g. data-saver mode) just leaves the poster frame visible.
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.muted = true;
-    void video.play().catch(() => {});
-  }, []);
-
-  return (
-    <video
-      ref={videoRef}
-      className="absolute inset-0 h-full w-full object-cover"
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="auto"
-      poster="/hero-water-poster.jpg"
-    >
-      <source src="/hero-water.mp4" type="video/mp4" />
-    </video>
   );
 }

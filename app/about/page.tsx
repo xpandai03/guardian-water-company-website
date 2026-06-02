@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { User } from "lucide-react";
 
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
@@ -110,59 +109,6 @@ export default function AboutPage() {
                 </ul>
                 <p>
                   Every installation we complete is backed by that standard.
-                </p>
-              </div>
-            </AnimateInView>
-          </Container>
-        </Section>
-
-        {/* David photo placeholder */}
-        <Section bg="muted">
-          <Container size="narrow">
-            <AnimateInView distance="subtle">
-              <div className="grid gap-8 md:grid-cols-[1fr_280px] md:items-center">
-                <div className="space-y-3">
-                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">
-                    The Person Behind Guardian Water
-                  </p>
-                  <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">
-                    David Delahunty
-                  </h2>
-                  <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
-                    Founder · Northeast Ohio water treatment specialist.
-                  </p>
-                </div>
-                {/* TODO(david): replace with real photo of David */}
-                <div className="relative mx-auto aspect-square w-full max-w-[280px] overflow-hidden rounded-2xl bg-accent-soft ring-1 ring-accent/20">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <User
-                      className="h-20 w-20 text-accent/60"
-                      strokeWidth={1.25}
-                      aria-hidden="true"
-                    />
-                  </div>
-                </div>
-              </div>
-            </AnimateInView>
-          </Container>
-        </Section>
-
-        {/* Serving Northeast Ohio */}
-        <Section>
-          <Container size="narrow">
-            <AnimateInView distance="subtle">
-              <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary">
-                Serving Northeast Ohio
-              </h2>
-              <div className="mt-4 space-y-4 text-base md:text-lg leading-relaxed text-muted-foreground">
-                <p>
-                  We work with homeowners across Medina, Cuyahoga County and
-                  surrounding communities.
-                </p>
-                <p>
-                  Water conditions vary across the region, which is why local
-                  experience matters — what works in one city may not apply to
-                  another.
                 </p>
               </div>
             </AnimateInView>

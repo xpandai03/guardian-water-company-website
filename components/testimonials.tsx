@@ -23,9 +23,9 @@ const testimonials = [
 ] as const;
 
 function StarRow() {
-  /* TODO(raunek): David mentioned possibly adding Google
-     logo near the 5-star ratings to signal review source.
-     Pending decision. */
+  /* TODO: Add Google G logo inline with 5-star ratings — awaiting asset from Raunek.
+     Per David (May 27): one ~20px G mark per card, vertically centered with the
+     star row (before/after the stars) to signal the review source. */
   return (
     <div className="flex gap-0.5 mb-4" aria-label="5 out of 5 stars">
       {Array.from({ length: 5 }).map((_, i) => (

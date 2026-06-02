@@ -29,7 +29,7 @@ function StarRow() {
   return (
     <div className="flex gap-0.5 mb-4" aria-label="5 out of 5 stars">
       {Array.from({ length: 5 }).map((_, i) => (
-        <span key={i} className="text-cta text-lg leading-none" aria-hidden="true">
+        <span key={i} className="text-amber-500 text-lg leading-none" aria-hidden="true">
           ★
         </span>
       ))}

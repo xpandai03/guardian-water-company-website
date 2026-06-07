@@ -24,6 +24,11 @@ export const metadata: Metadata = {
   },
   description:
     "Northeast Ohio's local water filtration experts. Whole house filtration, water softeners, and reverse osmosis systems for cleaner, safer water at home.",
+  verification: {
+    other: {
+      "facebook-domain-verification": "7d0wmokxz7vzuwgea6541o99uc55vr",
+    },
+  },
 };
 
 export default function RootLayout({

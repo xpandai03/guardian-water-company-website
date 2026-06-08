@@ -24,25 +24,19 @@ const testimonials = [
   },
 ] as const;
 
-// Google G logo (signals the review source) followed by 5 gold stars, sat on
-// one baseline. The logo keeps its native aspect ratio, sized to ~20px tall.
+// Google rating badge — the asset already contains the Google "G" above one
+// row of 5 gold stars, so it stands alone (no separately-rendered star row,
+// which would duplicate the stars).
 function StarRow() {
   return (
-    <div className="flex items-center gap-1.5 mb-4">
+    <div className="mb-4">
       <Image
         src="/brand/google-g-logo.png"
-        alt="Google"
+        alt="Rated 5 out of 5 stars on Google"
         width={113}
         height={62}
-        className="h-5 w-auto object-contain"
+        className="h-10 w-auto object-contain"
       />
-      <div className="flex gap-0.5" aria-label="5 out of 5 stars">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <span key={i} className="text-amber-500 text-lg leading-none" aria-hidden="true">
-            ★
-          </span>
-        ))}
-      </div>
     </div>
   );
 }

@@ -18,10 +18,13 @@ const items: readonly TrustItem[] = [
   {
     icon: BadgeCheck,
     title: "Free Water Test",
+    description:
+      "No charge water testing with clear results and honest recommendations",
   },
   {
     icon: MapPin,
     title: "Local & Family-Operated",
+    description: "Locally owned and operated right here in Northeast Ohio",
   },
   {
     icon: Handshake,

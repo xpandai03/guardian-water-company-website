@@ -117,9 +117,9 @@ export default function AboutPage() {
                   We believe homeowners should:
                 </p>
                 <ul className="ml-5 list-disc space-y-2">
-                  <li>understand their water clearly</li>
-                  <li>feel confident in the system installed in their home</li>
-                  <li>have long-term support after installation</li>
+                  <li>Understand their water clearly</li>
+                  <li>Feel confident in the system installed in their home</li>
+                  <li>Have long-term support after installation</li>
                 </ul>
                 <p>
                   Every installation we complete is backed by that standard.

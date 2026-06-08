@@ -206,49 +206,66 @@ export function ServiceProductsSection({
     </>
   );
 
+  // When a photo is present the grid lives in a narrower left column, so cap
+  // the cards at 2-across (3-across only reads well at full width).
+  const cardGridCols = image
+    ? "sm:grid-cols-2"
+    : "sm:grid-cols-2 lg:grid-cols-3";
+
+  const productGrid = (
+    <div className={image ? "mt-6 space-y-8" : "mt-8 space-y-12"}>
+      {sections.map((section) => {
+        const items = getProductsByCategory(section.category);
+        return (
+          <div key={section.category}>
+            {section.heading && (
+              <h3 className="mb-5 text-lg font-bold text-primary">
+                {section.heading}
+              </h3>
+            )}
+            <ul className={`grid gap-6 ${cardGridCols} items-stretch`}>
+              {items.map((product) => (
+                <li key={product.id} className="h-full">
+                  <ProductCard product={product} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      })}
+    </div>
+  );
+
   return (
     <AnimateInView>
-      <Section bg="muted">
+      {/* Compact padding when paired with a photo, to keep the section tight. */}
+      <Section bg="muted" className={image ? "py-12 md:py-16" : undefined}>
         <Container>
           {image ? (
-            // Header + intro paired with a photo on the right; the product grid
-            // stays full-width below so the cards don't get squeezed.
-            <div className="grid items-center gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
-              <div>{header}</div>
-              <div className="relative mx-auto aspect-[4/5] w-full max-w-[420px] overflow-hidden rounded-2xl ring-1 ring-border md:max-w-none">
+            // Cards take the wider left column (~2/3); the photo sits to the
+            // right (~1/3), smaller, preserving its portrait crop. Stacks on
+            // mobile with the photo below the cards.
+            <div className="grid items-start gap-8 lg:grid-cols-[2fr_1fr] lg:gap-12">
+              <div>
+                {header}
+                {productGrid}
+              </div>
+              <div className="relative mx-auto aspect-[4/5] w-full max-w-[260px] overflow-hidden rounded-2xl ring-1 ring-border lg:mx-0 lg:max-w-none lg:self-center">
                 <Image
                   src={image.src}
                   alt={image.alt}
                   fill
                   className="object-cover"
-                  sizes="(min-width: 768px) 50vw, 100vw"
+                  sizes="(min-width: 1024px) 30vw, (min-width: 640px) 260px, 100vw"
                 />
               </div>
             </div>
           ) : (
-            header
+            <>
+              {header}
+              {productGrid}
+            </>
           )}
-          <div className="mt-8 space-y-12">
-            {sections.map((section) => {
-              const items = getProductsByCategory(section.category);
-              return (
-                <div key={section.category}>
-                  {section.heading && (
-                    <h3 className="mb-5 text-lg font-bold text-primary">
-                      {section.heading}
-                    </h3>
-                  )}
-                  <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 items-stretch">
-                    {items.map((product) => (
-                      <li key={product.id} className="h-full">
-                        <ProductCard product={product} />
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              );
-            })}
-          </div>
         </Container>
       </Section>
     </AnimateInView>

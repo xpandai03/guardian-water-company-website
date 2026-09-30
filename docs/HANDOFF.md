@@ -22,6 +22,9 @@
 - The Jobber app config in Jobber Developer Center
 - DNS records on GoDaddy (changing these can take the site 
   or email offline)
+- The Google Tag Manager block in app/layout.tsx (powers Google
+  Ads tracking). Add or change ad tags inside Google Tag Manager,
+  not in the code.
 
 ## When something breaks
 
